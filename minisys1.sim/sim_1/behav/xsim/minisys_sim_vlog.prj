@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../minisys1.srcs/sources_1/ip/cpuclk" \
+"../../../../minisys1.srcs/sources_1/ip/ram/sim/ram.v" \
+"../../../../minisys1.srcs/sources_1/ip/prgrom/sim/prgrom.v" \
+"../../../../minisys1.srcs/sources_1/ip/cpuclk/cpuclk_clk_wiz.v" \
+"../../../../minisys1.srcs/sources_1/ip/cpuclk/cpuclk.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/control32.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/dmemory32.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/executs32.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/idecode32.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/ifetc32.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/ioread.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/leds.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/memorio.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/minisys.v" \
+"../../../../minisys1.srcs/sources_1/imports/minisys/switchs.v" \
+"../../../../minisys1.srcs/sim_1/imports/sim/minisys_sim.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

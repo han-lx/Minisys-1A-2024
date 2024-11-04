@@ -1,0 +1,27 @@
+0.6
+2017.4
+Dec 15 2017
+21:07:18
+C:/minisys1/minisys1.sim/sim_1/behav/xsim/glbl.v,1513215259,verilog,,,,glbl,,,,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/ControlIO32_sim.v,1470647813,verilog,,,,ControlIO32_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/control32_sim.v,1470537308,verilog,,,,control32_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/cpuclk_sim.v,1469721380,verilog,,,,cpuclk_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/exe_sim.v,1470633905,verilog,,,,exe_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/idcode32_sim.v,1470579197,verilog,,,,idcode32_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/ifetc32_sim.v,1470574939,verilog,,,,ifetc32_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/minisys_sim.v,1472201222,verilog,,,,minisys_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sim_1/imports/sim/ram_sim.v,1470638312,verilog,,,,ram_sim,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/control32.v,1730452522,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/dmemory32.v,,control32,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/dmemory32.v,1730449620,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/executs32.v,,dmemory32,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/executs32.v,1730448097,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/idecode32.v,,Executs32,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/idecode32.v,1730452055,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/ifetc32.v,,Idecode32,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/ifetc32.v,1730712732,verilog,,C:/minisys1/minisys1.srcs/sim_1/imports/sim/ifetc32_sim.v,,Ifetc32,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/ioread.v,1421552470,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/leds.v,,ioread,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/leds.v,1730458232,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/memorio.v,,leds,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/memorio.v,1421639772,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/minisys.v,,memorio,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/minisys.v,1730456030,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/switchs.v,,minisys,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/imports/minisys/switchs.v,1730458229,verilog,,C:/minisys1/minisys1.srcs/sim_1/imports/sim/minisys_sim.v,,switchs,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/ip/cpuclk/cpuclk.v,1730374834,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/control32.v,,cpuclk,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/ip/cpuclk/cpuclk_clk_wiz.v,1730374833,verilog,,C:/minisys1/minisys1.srcs/sources_1/ip/cpuclk/cpuclk.v,,cpuclk_clk_wiz,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/ip/prgrom/sim/prgrom.v,1730471478,verilog,,C:/minisys1/minisys1.srcs/sources_1/imports/minisys/ifetc32.v,,prgrom,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,
+C:/minisys1/minisys1.srcs/sources_1/ip/ram/sim/ram.v,1730456435,verilog,,C:/minisys1/minisys1.srcs/sources_1/ip/prgrom/sim/prgrom.v,,ram,,,../../../../minisys1.srcs/sources_1/ip/cpuclk,,,,,

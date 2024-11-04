@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="idcode32_sim_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="idcode32_sim" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2120000001fs"></ZoomEndTime>
+      <Cursor1Time time="1905333000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="36" />
+   <wvobject fp_name="/idcode32_sim/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/ALU_result" type="array">
+      <obj_property name="ElementShortName">ALU_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ALU_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Jal" type="logic">
+      <obj_property name="ElementShortName">Jal</obj_property>
+      <obj_property name="ObjectShortName">Jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/RegWrite" type="logic">
+      <obj_property name="ElementShortName">RegWrite</obj_property>
+      <obj_property name="ObjectShortName">RegWrite</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/MemtoReg" type="logic">
+      <obj_property name="ElementShortName">MemtoReg</obj_property>
+      <obj_property name="ObjectShortName">MemtoReg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/RegDst" type="logic">
+      <obj_property name="ElementShortName">RegDst</obj_property>
+      <obj_property name="ObjectShortName">RegDst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/opcplus4" type="array">
+      <obj_property name="ElementShortName">opcplus4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">opcplus4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_data_1" type="array">
+      <obj_property name="ElementShortName">read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_data_2" type="array">
+      <obj_property name="ElementShortName">read_data_2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Sign_extend" type="array">
+      <obj_property name="ElementShortName">Sign_extend[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Sign_extend[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_register_1_address" type="array">
+      <obj_property name="ElementShortName">read_register_1_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">read_register_1_address[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/write_register_address" type="array">
+      <obj_property name="ElementShortName">write_register_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_register_address[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/read_register_1_address" type="array">
+      <obj_property name="ElementShortName">read_register_1_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">read_register_1_address[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/read_register_2_address" type="array">
+      <obj_property name="ElementShortName">read_register_2_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">read_register_2_address[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/write_register_address_1" type="array">
+      <obj_property name="ElementShortName">write_register_address_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_register_address_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/write_register_address_0" type="array">
+      <obj_property name="ElementShortName">write_register_address_0[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_register_address_0[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/opcode" type="array">
+      <obj_property name="ElementShortName">opcode[5:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Uid/sign" type="logic">
+      <obj_property name="ElementShortName">sign</obj_property>
+      <obj_property name="ObjectShortName">sign</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/ALU_result" type="array">
+      <obj_property name="ElementShortName">ALU_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ALU_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Jal" type="logic">
+      <obj_property name="ElementShortName">Jal</obj_property>
+      <obj_property name="ObjectShortName">Jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/RegWrite" type="logic">
+      <obj_property name="ElementShortName">RegWrite</obj_property>
+      <obj_property name="ObjectShortName">RegWrite</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/MemtoReg" type="logic">
+      <obj_property name="ElementShortName">MemtoReg</obj_property>
+      <obj_property name="ObjectShortName">MemtoReg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/RegDst" type="logic">
+      <obj_property name="ElementShortName">RegDst</obj_property>
+      <obj_property name="ObjectShortName">RegDst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/opcplus4" type="array">
+      <obj_property name="ElementShortName">opcplus4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">opcplus4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_data_1" type="array">
+      <obj_property name="ElementShortName">read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_data_2" type="array">
+      <obj_property name="ElementShortName">read_data_2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/Sign_extend" type="array">
+      <obj_property name="ElementShortName">Sign_extend[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Sign_extend[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/idcode32_sim/read_register_1_address" type="array">
+      <obj_property name="ElementShortName">read_register_1_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">read_register_1_address[4:0]</obj_property>
+   </wvobject>
+</wave_config>

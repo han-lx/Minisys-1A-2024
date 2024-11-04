@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="ifetc32_sim_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="ifetc32_sim" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="768510000fs"></ZoomStartTime>
+      <ZoomEndTime time="1860510001fs"></ZoomEndTime>
+      <Cursor1Time time="1770110000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="114"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/ifetc32_sim/Add_result" type="array">
+      <obj_property name="ElementShortName">Add_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Add_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Read_data_1" type="array">
+      <obj_property name="ElementShortName">Read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Branch" type="logic">
+      <obj_property name="ElementShortName">Branch</obj_property>
+      <obj_property name="ObjectShortName">Branch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/nBranch" type="logic">
+      <obj_property name="ElementShortName">nBranch</obj_property>
+      <obj_property name="ObjectShortName">nBranch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Jmp" type="logic">
+      <obj_property name="ElementShortName">Jmp</obj_property>
+      <obj_property name="ObjectShortName">Jmp</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Jal" type="logic">
+      <obj_property name="ElementShortName">Jal</obj_property>
+      <obj_property name="ObjectShortName">Jal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Jrn" type="logic">
+      <obj_property name="ElementShortName">Jrn</obj_property>
+      <obj_property name="ObjectShortName">Jrn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Zero" type="logic">
+      <obj_property name="ElementShortName">Zero</obj_property>
+      <obj_property name="ObjectShortName">Zero</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/PC_plus_4_out" type="array">
+      <obj_property name="ElementShortName">PC_plus_4_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_plus_4_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/opcplus4" type="array">
+      <obj_property name="ElementShortName">opcplus4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">opcplus4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Uifetch/PC" type="array">
+      <obj_property name="ElementShortName">PC[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Uifetch/next_PC" type="array">
+      <obj_property name="ElementShortName">next_PC[31:0]</obj_property>
+      <obj_property name="ObjectShortName">next_PC[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetc32_sim/Uifetch/Jpadr" type="array">
+      <obj_property name="ElementShortName">Jpadr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Jpadr[31:0]</obj_property>
+   </wvobject>
+</wave_config>
