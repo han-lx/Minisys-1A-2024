@@ -39,7 +39,7 @@ module ifetch32(
    input [31:0] Interrupt_pc,//中断处理程序的位置
    input recover,//为1时表示从中断恢复
    input Wcp0,//为1时写CP0 
-   output reg Eret_pc//中断返回,寄存器，记录状态
+   output reg IF_recover//中断返回,寄存器，记录状态
     );
     
     reg [31:0] next_PC;//下条指令的地址
@@ -62,7 +62,7 @@ module ifetch32(
     
     //时钟下降沿写PC
     always @(negedge clock) begin
-      Eret_pc = recover;
+      IF_recover = recover;
       if (reset) PC = 32'h00000000;//复位时PC回到全0初始值
       else PC = next_PC << 2;//这里还没有完善
     end

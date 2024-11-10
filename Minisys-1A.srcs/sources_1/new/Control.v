@@ -4,7 +4,7 @@
 // Engineer: Jiangnan Sun
 // 
 // Create Date: 2024/11/09 13:55:19
-// Design Name: CPU控制单元，只包含信号的处理，不包含冒险处理
+// Design Name: CPU控制单元，只包含控制信号的处理，不包含冒险处理
 // Module Name: control32
 // Project Name: 
 // Target Devices: 
