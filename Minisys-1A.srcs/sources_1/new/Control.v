@@ -140,10 +140,10 @@ module control32(
                  (Jrn || Jalr) ? 2'b11 :
                  2'b00;
      //∂¡–¥–≈∫≈
-     assign MemRead = L_format&&(Alu_resultHigh!=22'd1);
-     assign IORead = L_format&&(Alu_resultHigh==22'd1);
-     assign MemWrite = S_format&&(Alu_resultHigh!=22'd1);
-     assign IOWrite = S_format&&(Alu_resultHigh==22'd1);
+     assign MemRead = L_format&&(Alu_resultHigh!=22'b1111111111111111111111);
+     assign IORead = L_format&&(Alu_resultHigh==22'b1111111111111111111111);
+     assign MemWrite = S_format&&(Alu_resultHigh!=22'b1111111111111111111111);
+     assign IOWrite = S_format&&(Alu_resultHigh==22'b1111111111111111111111);
      assign MemIOtoReg = L_format;
      //∆‰”‡–≈∫≈
      assign Sftmd = (op==6'b000000&&func[5:3]==3'b000);
