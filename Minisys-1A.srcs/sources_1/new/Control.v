@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
+// Company: SEU
 // Engineer: Jiangnan Sun
 // 
 // Create Date: 2024/11/09 13:55:19
@@ -70,7 +70,7 @@ module control32(
    output Div,//该指令为除法指令，用来区分乘除法
    output [1:0] ALUop,//是R-类型或I_format=1时位1为1, 条件跳转指令则位0为1
    output Mem_sign,//字节，半字指令作何种扩展
-   output Mem_Dwidth,//读写存储器的数据位数，三种情况，用2位
+   output [1:0] Mem_Dwidth,//读写存储器的数据位数，三种情况，用2位
    //异常中断相关信号
    output Break,//BREAK指令
    output Syscall,//SYSCALL指令

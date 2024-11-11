@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
+// Company: SEU
 // Engineer: Jiangnan Sun
 // 
 // Create Date: 2024/11/10 16:11:35
@@ -24,7 +24,7 @@ module ifetch32(
    input reset,//复位信号 高电平有效
    input clock,//时钟信号
    input Wpc,//控制模块传入的写PC信号，用于选择写哪个PC
-   input stall,//阻塞信号
+   input IF_stall,//阻塞信号
    input Wir,//指令寄存器写使能，同时也控制PC<=next_PC?
    //下条PC地址的计算
    input [31:0] Jpc,//译码模块传入的跳转值，用于JMP指令和JAL指令的跳转
@@ -66,7 +66,7 @@ module ifetch32(
     always @(negedge clock) begin
       IF_recover = recover;
       if (reset) PC = 32'h00000000;//复位时PC回到全0初始值
-      else if (Wir && stall!=1'b1) PC = next_PC << 2;//这里还没有完善
+      else if (Wir && IF_stall!=1'b1) PC = next_PC << 2;//这里还没有完善
     end
     
 endmodule
