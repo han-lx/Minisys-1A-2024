@@ -25,7 +25,7 @@ module IFtoID(
   input reset,//复位信号
   input flush,//清空信号
   input Wir,//写IR寄存器控制信号
-  input IF_stall,//为1时阻塞
+  input EX_stall,//为1时阻塞
   input recover,//从中断返回
   
   //段间寄存器的设置
@@ -50,7 +50,7 @@ module IFtoID(
         IF_ID_Npc = 32'd0;
         IF_ID_IR = 32'd0;
     end
-    else if (Wir && IF_stall!=1'b1) begin //写IR寄存器且目前流水线不阻塞
+    else if (Wir && EX_stall!=1'b1) begin //写IR寄存器且目前流水线不阻塞
         IF_ID_Npc = IF_opcplus4;//这里注意IF阶段得到的PC+4已经进行了右移2位的操作，这里要恢复过来
         IF_ID_IR = IF_instruction;
     end

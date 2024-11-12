@@ -25,7 +25,7 @@ module IDtoEX(
   input clock,//时钟信号
   input reset,//复位信号
   input flush,//冲刷信号
-  input IF_stall,//取值单元阻塞信号
+  input EX_stall,//取值单元阻塞信号
   input ID_stall,//译码单元阻塞信号
   input IF_ID_recover,//从前一个段间寄存器传来的恢复信号
   input [31:0] ID_opcplus4,//PC+4的值
@@ -234,7 +234,7 @@ module IDtoEX(
       ID_EX_Eret = 1'd0;
       ID_EX_Rsvd = 1'd0;
     end
-    else if (IF_stall != 1) begin//ID段不阻塞的前提下，IF段也要不阻塞，才能正常工作
+    else if (EX_stall != 1) begin//ID段不阻塞的前提下，IF段也要不阻塞，才能正常工作
       ID_EX_opcplus4 = ID_opcplus4;
       ID_EX_A = ID_read_data_1;
       ID_EX_B = ID_read_data_2;
