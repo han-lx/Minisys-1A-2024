@@ -136,4 +136,141 @@ module executs32(
   assign Overflow = (ALU_ctl != 3'b000 && ALU_ctl != 3'b010) ? 1'b0 ://不是有符号加减运算
          (ALU_ctl == 3'b000) ? (S_A_input[31] == S_B_input[31] && S_A_input[31] != Alu_output_mux[31])://同号相加结果符号相反
          (S_A_input[31] != S_B_input[31] && S_B_input[31] != Alu_output_mux[31]);//异号相减结果符号与减数相同
+         
+  //case4:乘除法运算
+  reg [31:0] HI;//结果高32位
+  reg [31:0] LO;//结果低32位
+  wire Mult,Multu,Div,Divu;
+  assign Mult = (EX_op == 6'b000000 && EX_func == 6'b011000);
+  assign Multu = (EX_op == 6'b000000 && EX_func == 6'b011001);
+  assign Div = (EX_op == 6'b000000 && EX_func == 6'b011010);
+  assign Divu = (EX_op == 6'b000000 && EX_func == 6'b011011);
+  wire [63:0] Multi_result_signed;//有符号乘
+  wire [63:0] Multi_result_unsigned;//无符号乘
+  wire [63:0] Divd_result_signed;//有符号除
+  wire [63:0] Divd_result_unsigned;//无符号除
+  //有符号乘法，元件例化
+  mult mult(.A(A_input),
+            .B(B_input),
+            .P(Multi_result_signed)
+            );
+  //无符号乘法，元件例化
+  multu multu(.A(A_input),
+              .B(B_input),
+              .P(Multi_result_unsigned)
+              );
+  wire div_dout_tvalid;
+  wire divu_dout_tvalid;
+  wire div_zero;
+  wire divu_zero;
+  //有符号除法，元件例化
+  div div(
+    .aclk(clock),
+    .s_axis_divisor_tvalid(EX_Div),
+    .s_axis_divisor_tdata(B_input),//除数
+    .s_axis_dividend_tvalid(EX_Div),
+    .s_axis_dividend_tdata(A_input),//被除数
+    .m_axis_dout_tvalid(div_dout_tvalid),//除法成功，有结果
+    .m_axis_dout_tuser(div_zero),//除0
+    .m_axis_dout_tdata(Divd_result_signed)
+   ); 
+  //无符号除法，元件例化
+  divu divu(
+    .aclk(clock),
+    .s_axis_divisor_tvalid(EX_Div),
+    .s_axis_divisor_tdata(B_input),//除数
+    .s_axis_dividend_tvalid(EX_Div),
+    .s_axis_dividend_tdata(A_input),//被除数
+    .m_axis_dout_tvalid(divu_dout_tvalid),//除法成功，有结果
+    .m_axis_dout_tuser(divu_zero),//除0
+    .m_axis_dout_tdata(Divd_result_unsigned)
+   ); 
+  //乘除法阻塞流水线
+  //初始状态阻塞信号为0
+  initial begin
+    EX_stall = 1'b0;
+  end
+  //需要寄存器来记录停顿周期数，只有当完成操作才能将流水线阻塞信号复位
+  //由于我们现在对乘除法需要的时钟周期数并不清楚，因此我们在这里先预设一个比较大的停顿周期数
+  reg [5:0] mult_stall;
+  reg [5:0] multu_stall;
+  reg [5:0] div_stall;
+  reg [5:0] divu_stall;
+  
+  always @(posedge clock) begin
+    if(Mult) begin
+      mult_stall = mult_stall - 6'd1;
+      if (mult_stall > 0) EX_stall = 1'b1;
+      else EX_stall = 1'b0;
+    end
+    else begin
+      mult_stall = 6'd10;//这个值不确定
+    end
+    if(Multu) begin
+      multu_stall = multu_stall - 6'd1;
+      if (multu_stall > 0) EX_stall = 1'b1;
+      else EX_stall = 1'b0;
+    end
+    else begin
+      multu_stall = 6'd10;//这个值不确定
+    end
+    if(Div) begin
+      div_stall = div_stall - 6'd1;
+      if (div_stall > 0) EX_stall = 1'b1;
+      else EX_stall = 1'b0;
+    end
+    else begin
+      div_stall = 6'd50;//这个值不确定
+    end
+    if(Divu) begin
+      divu_stall = divu_stall - 6'd1;
+      if (divu_stall > 0) EX_stall = 1'b1;
+      else EX_stall = 1'b0;
+    end
+    else begin
+      divu_stall = 6'd50;//这个值不确定
+    end
+  end
+  //之后将乘除法的结果放入HI,LO寄存器，这里还包含单纯读写寄存器的指令
+  always @(posedge clock) begin
+    if (EX_Mthi)
+      HI <= A_input;
+    else if (EX_Mtlo)
+      LO <= A_input;
+    else if (Mult)
+      {HI,LO} <= Multi_result_signed;
+    else if (Multu)
+      {HI,LO} <= Multi_result_unsigned;
+    else if (EX_Div) begin//除法操作跟乘法不同
+      if (Div) begin
+        if (div_dout_tvalid)//除法成功才能赋值
+          {HI,LO} <= Divd_result_signed;
+        Div_0 <= div_zero;//后面需要抛出除0异常
+      end
+      else if (Divu) begin
+        if (divu_dout_tvalid)
+          {HI,LO} <= Divd_result_unsigned;
+        Div_0 <= divu_zero;
+      end
+    end
+  end
+  
+  //最后这个进程是完成计算之后将结果写入段间寄存器的操作
+  always @* begin
+    if (EX_Mfhi)
+      EX_ALU_result = HI;
+    else if (EX_Mflo)
+      EX_ALU_result = LO;
+    else if ((ALU_ctl == 3'b111) && (EX_I_format == 1'b1))//处理lui指令
+      EX_ALU_result = {B_input[15:0] , 16'd0};
+    else if ((ALU_ctl [2:1] == 2'b01) && (EX_Aluop[1] == 1'b1) && (Exe_code[5:3] != 3'b100))//SLT系列指令
+      EX_ALU_result = {31'd0 , Alu_output_mux[32]};
+    else if (EX_Sftmd)//移位指令
+      EX_ALU_result = Sftmd_input;
+    else if (EX_Jal || EX_Jalr)
+      EX_ALU_result = EX_opcplus4;
+    else
+      EX_ALU_result = Alu_output_mux[31:0];
+  end
+  
 endmodule

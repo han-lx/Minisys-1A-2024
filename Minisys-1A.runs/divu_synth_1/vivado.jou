@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Tue Nov 12 17:45:34 2024
+# Process ID: 11528
+# Current directory: D:/Minisys-1A/Minisys-1A.runs/divu_synth_1
+# Command line: vivado.exe -log divu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source divu.tcl
+# Log file: D:/Minisys-1A/Minisys-1A.runs/divu_synth_1/divu.vds
+# Journal file: D:/Minisys-1A/Minisys-1A.runs/divu_synth_1\vivado.jou
+#-----------------------------------------------------------
+source divu.tcl -notrace
