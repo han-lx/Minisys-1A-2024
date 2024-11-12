@@ -110,7 +110,7 @@ module IDtoEX(
   output reg ID_EX_IORead,
   output reg ID_EX_IOWrite,
   output reg ID_EX_Mem_sign,
-  output reg ID_EX_Mem_Dwidth,
+  output reg [1:0] ID_EX_Mem_Dwidth,
   output reg ID_EX_Beq,
   output reg ID_EX_Bne,
   output reg ID_EX_Bgez,
