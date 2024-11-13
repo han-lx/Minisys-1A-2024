@@ -25,7 +25,7 @@ module ifetch32(
    input clock,//时钟信号
    input Wpc,//控制模块传入的写PC信号，用于选择写哪个PC
    input EX_stall,//阻塞信号
-   input Wir,//指令寄存器写使能，同时也控制PC<=next_PC?
+   input WPC,//写PC寄存器
    //下条PC地址的计算
    input [31:0] Jpc,//译码模块传入的跳转值，用于JMP指令和JAL指令的跳转
    input [31:0] read_data_1,//译码模块传入的rs寄存器的值，用于JR和JALR指令的跳转
@@ -66,7 +66,7 @@ module ifetch32(
     always @(negedge clock) begin
       IF_recover = recover;
       if (reset) PC = 32'h00000000;//复位时PC回到全0初始值
-      else if (Wir && EX_stall!=1'b1) PC = next_PC << 2;//这里还没有完善
+      else if (WPC && EX_stall!=1'b1) PC = next_PC << 2;//这里还没有完善
     end
     
 endmodule

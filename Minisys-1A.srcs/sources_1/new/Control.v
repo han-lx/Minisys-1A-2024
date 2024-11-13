@@ -46,7 +46,7 @@ module control32(
    output Jalr,//Jalr指令，Minisys-1A新加
    output Jrn,//Jrn指令
    //条件跳转指令
-   output [1:0] Wpc,//条件跳转指令的判断在控制模块完成
+   //output [1:0] Wpc,//条件跳转指令的判断在控制模块完成
    output Beq,
    output Bne,
    output Bgez,
@@ -112,33 +112,27 @@ module control32(
     assign L_format = (op[5:3]==3'b100);//从存储器读
     assign S_format = (op[5:3]==3'b101);//写存储器
      //条件转移指令Wpc=01,J/Jal指令Wpc=10,Jr/Jalr指令Wpc=11;
-    wire EBeq,EBne,EBgez,EBgtz,EBlez,EBltz,EBgezal,EBltzal;
-    wire Branchs;
     assign Beq = (op==6'b000100);
-    assign EBeq = (op==6'b000100&&Zero);
+    //assign EBeq = (op==6'b000100&&Zero);
     assign Bne = (op==6'b000101);
-    assign EBne = (op==6'b000101&&~Zero);
+    //assign EBne = (op==6'b000101&&~Zero);
     assign Bgez = (op==6'b000001&&rt==5'b00001);
-    assign EBgez = (op==6'b000001&&rt==5'b00001&&read_data_1[31]==1'b0);
+    //assign EBgez = (op==6'b000001&&rt==5'b00001&&read_data_1[31]==1'b0);
     assign Bgtz = (op==6'b000111&&rt==5'b00000);
-    assign EBgtz = (op==6'b000111&&rt==5'b00000&&read_data_1[31]==1'b0&&read_data_1!=32'd0);
+   // assign EBgtz = (op==6'b000111&&rt==5'b00000&&read_data_1[31]==1'b0&&read_data_1!=32'd0);
     assign Blez = (op==6'b000110&&rt==5'b00000);
-    assign EBlez = (op==6'b000110&&rt==5'b00000&&read_data_1[31]==1'b1);
+    //assign EBlez = (op==6'b000110&&rt==5'b00000&&read_data_1[31]==1'b1);
     assign Bltz = (op==6'b000001&&rt==5'b00000);
-    assign EBltz = (op==6'b000001&&rt==5'b00000&&read_data_1[31]==1'b1&&read_data_1!=32'd0);
+    //assign EBltz = (op==6'b000001&&rt==5'b00000&&read_data_1[31]==1'b1&&read_data_1!=32'd0);
     assign Bgezal = (op==6'b000001&&rt==5'b10001);
     assign Bltzal = (op==6'b000001&&rt==5'b00000);
-    assign EBgezal = (Bgezal&&read_data_1[31]==1'b0);
-    assign EBltzal = (Bltzal&&read_data_1[31]==1'b1&&read_data_1!=32'd0);
-    assign Branchs = (EBeq||EBne||EBgez||EBgtz||EBlez||EBltz||EBgezal||EBltzal);
+    //assign EBgezal = (Bgezal&&read_data_1[31]==1'b0);
+    //assign EBltzal = (Bltzal&&read_data_1[31]==1'b1&&read_data_1!=32'd0);
+    //assign Branchs = (EBeq||EBne||EBgez||EBgtz||EBlez||EBltz||EBgezal||EBltzal);
     //J指令
     assign Jmp = (op==6'b000010);
     assign Jal = (op==6'b000011);
-    //Wpc的值
-    assign Wpc = (Branchs) ? 2'b01 :
-                 (Jmp || Jal) ? 2'b10 :
-                 (Jrn || Jalr) ? 2'b11 :
-                 2'b00;
+ 
      //读写信号
      assign MemRead = L_format&&(Alu_resultHigh!=22'b1111111111111111111111);
      assign IORead = L_format&&(Alu_resultHigh==22'b1111111111111111111111);
