@@ -29,6 +29,7 @@ module IDtoEX(
   input ID_stall,//译码单元阻塞信号
   input IF_ID_recover,//从前一个段间寄存器传来的恢复信号
   input [31:0] ID_opcplus4,//PC+4的值
+  input [31:0] IF_ID_PC,//PC值
   input [31:0] ID_read_data_1,//读出的rs寄存器的值
   input [31:0] ID_read_data_2,//读出的rt寄存器的值
   input [5:0] ID_func,//指令中读出的功能码(R)
@@ -81,6 +82,7 @@ module IDtoEX(
   
   output reg ID_EX_recover,
   output reg [31:0] ID_EX_opcplus4,
+  output reg [31:0] ID_EX_PC,
   output reg [31:0] ID_EX_A,
   output reg [31:0] ID_EX_B,
   output reg [5:0] ID_EX_func,
@@ -136,6 +138,7 @@ module IDtoEX(
     ID_EX_rd_data = ID_rd_data;
     if (reset || flush) begin  //复位和冲刷直接置0，0为初始值
       ID_EX_opcplus4 = 32'd0;
+      ID_EX_PC = 32'd0;
       ID_EX_A = 32'd0;
       ID_EX_B = 32'd0;
       ID_EX_func = 6'd0;
@@ -186,6 +189,7 @@ module IDtoEX(
     end
     else if (ID_stall) begin //当前ID阶段阻塞，只传之前的值，不进行译码
       ID_EX_opcplus4 = ID_opcplus4;
+      ID_EX_PC = IF_ID_PC;
       ID_EX_A = ID_read_data_1;
       ID_EX_B = ID_read_data_2;
       ID_EX_func = ID_func;
@@ -236,6 +240,7 @@ module IDtoEX(
     end
     else if (EX_stall != 1) begin//ID段不阻塞的前提下，IF段也要不阻塞，才能正常工作
       ID_EX_opcplus4 = ID_opcplus4;
+      ID_EX_PC = IF_ID_PC;
       ID_EX_A = ID_read_data_1;
       ID_EX_B = ID_read_data_2;
       ID_EX_func = ID_func;

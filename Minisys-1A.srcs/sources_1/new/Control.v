@@ -22,11 +22,11 @@
 
 module control32(
    input [31:0] Instruction,
-   input s_format,//存数类型指令
-   input l_format,//取数类型指令
+   //input s_format,//存数类型指令
+   //input l_format,//取数类型指令
    input [21:0] Alu_resultHigh,
-   input Zero,//为了完成条件跳转指令
-   input [31:0] read_data_1,//为了完成条件跳转指令的判断
+   //input Zero,//为了完成条件跳转指令
+   //input [31:0] read_data_1,//为了完成条件跳转指令的判断
    input clock,//上升沿状态变换
    input reset,//复位信号
    

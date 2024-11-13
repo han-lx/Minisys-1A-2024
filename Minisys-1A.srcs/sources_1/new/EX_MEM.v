@@ -63,6 +63,7 @@ module EXtoMEM(
   input ID_EX_Mem_sign,
   input [1:0] ID_EX_Mem_Dwidth,
   input [31:0] ID_EX_opcplus4,
+  input [31:0] ID_EX_PC,
   //以下信号从执行模块传入
   input EX_Div_0,
   input EX_Overflow,
@@ -107,6 +108,7 @@ module EXtoMEM(
   output reg EX_MEM_Eret,
   output reg EX_MEM_Rsvd,
   output reg [31:0] EX_MEM_opcplus4,
+  output reg [31:0] EX_MEM_PC, 
   output reg [31:0] EX_MEM_ALU_result,
   output reg [31:0] EX_MEM_Wdata,
   output reg [4:0] EX_MEM_Waddr
@@ -152,6 +154,7 @@ module EXtoMEM(
       EX_MEM_Eret = 1'd0;
       EX_MEM_Rsvd = 1'd0;
       EX_MEM_opcplus4 = 32'd0;
+      EX_MEM_PC = 32'd0;
       EX_MEM_ALU_result = 32'd0;
       EX_MEM_Wdata = 32'd0;
       EX_MEM_Waddr = 5'd0;
@@ -193,6 +196,7 @@ module EXtoMEM(
       EX_MEM_Eret = ID_EX_Eret;
       EX_MEM_Rsvd = ID_EX_Rsvd;
       EX_MEM_opcplus4 = ID_EX_opcplus4;
+      EX_MEM_PC = ID_EX_PC;
       EX_MEM_ALU_result = EX_ALU_result;
       EX_MEM_Wdata = EX_rt_data;
       EX_MEM_Waddr = EX_Waddr;     

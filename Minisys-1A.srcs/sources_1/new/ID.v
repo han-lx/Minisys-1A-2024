@@ -34,6 +34,7 @@ module idecode32(
   input EBgezal,
   input Bltzal,
   input EBltzal,
+  input Negative,
   input RegWrite,//写寄存器信号
   
   output [31:0] ID_Jpc,//J指令跳转的地址
@@ -69,7 +70,7 @@ module idecode32(
    assign rd_data = register[write_address_1];
    //写寄存器操作
    assign write_data = (Jal || Jalr || Bgezal || Bltzal) ? ID_opcplus4 : Wdata;
-   assign write_register_address = (Jal || EBgezal || EBltzal) ? 5'd31:(Bgezal||Bltzal)? 5'd0: Waddr;
+   assign write_register_address = (Jal || (Bgezal && !Negative) || (Bltzal && Negative)) ? 5'd31:(Bgezal||Bltzal)? 5'd0: Waddr;
    //寄存器组初始化以及写寄存器
     integer i;
       always @(posedge clock) begin       // 本进程写目标寄存器

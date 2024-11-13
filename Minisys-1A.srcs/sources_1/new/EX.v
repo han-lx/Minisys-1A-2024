@@ -40,7 +40,7 @@ module executs32(
   //接下来的信号是由转发处理模块（属于控制模块）传来的，用于解决数据冒险的一部分
   input [1:0] AluAsrc,//有3种选择，这是多路选择器的控制信号
   input [1:0] AluBsrc,
-  input [1:0] AluFsrc,//目前看来这个操作不知道是做什么的
+  input [1:0] AluMsrc,//选择读的数据，rd寄存器相关
   
   input EX_I_format,
   input EX_Jrn,
@@ -69,6 +69,7 @@ module executs32(
   //output [31:0] PC_addr_result//计算出的分支指令的地址
 );
   
+  assign Waddr = EX_Regdst ? EX_write_address_1 :  EX_write_address_0;
   //首先选择到底哪个值进入ALU运算单元进行计算
   wire [31:0] A_input,B_input;//经过多路选择后最终进入ALU运算的操作数、
   //没有RAW-00，有RAW且与上条指令数据冲突-01，有RAW且与上上条指令数据冲突-10
@@ -77,7 +78,7 @@ module executs32(
   assign B_input = (EX_Alusrc == 1'b1) ? EX_IMM : (AluBsrc == 2'b00) ? EX_B : (AluBsrc == 2'b01) ? EX_MEM_ALU_result : Wdata;
   //同时要刷新流水线上的后面可能用到的寄存器的值
   assign EX_rt_data = (AluBsrc == 2'b00) ? EX_B : (AluBsrc == 2'b01) ? EX_MEM_ALU_result : Wdata;
-  assign EX_rd_data = (AluFsrc == 2'b00) ? EX_rd_data : (AluFsrc == 2'b01) ? EX_MEM_ALU_result : Wdata;//这个后面做到转发的时候应该会明白
+  assign EX_rd_data = (AluMsrc == 2'b00) ? EX_rd_data : (AluMsrc == 2'b01) ? EX_MEM_ALU_result : Wdata;//这个后面做到转发的时候应该会明白
   
   //case1:处理移位指令
   reg [31:0] Sftmd_input;//存放移位指令的结果

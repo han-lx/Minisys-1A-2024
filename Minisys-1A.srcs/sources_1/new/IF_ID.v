@@ -36,7 +36,10 @@ module IFtoID(
   input [31:0] IF_instruction,//IF阶段取指得到的指令内容
   output reg [31:0] IF_ID_IR,//IF/ID段间寄存器IR
   //recover寄存器
-  output reg IF_ID_recover//记录恢复，往下传递，从而恢复当前CPU状态
+  output reg IF_ID_recover,//记录恢复，往下传递，从而恢复当前CPU状态
+  //PC寄存器
+  input [31:0] IF_PC,
+  output reg[31:0] IF_ID_PC
  );
  
  //时钟下降沿或者reset上升沿（就是reset复位信号有效）时写段间寄存器
@@ -45,14 +48,17 @@ module IFtoID(
     if (reset) begin //复位信号把所有寄存器都复位
        IF_ID_Npc = 32'd0;
        IF_ID_IR = 32'd0;
+       IF_ID_PC = 32'd0;
     end
     else if (flush) begin //冲刷信号同样置0
         IF_ID_Npc = 32'd0;
         IF_ID_IR = 32'd0;
+        IF_ID_PC = 32'd0;
     end
     else if (Wir && EX_stall!=1'b1) begin //写IR寄存器且目前流水线不阻塞
         IF_ID_Npc = IF_opcplus4;//这里注意IF阶段得到的PC+4已经进行了右移2位的操作，这里要恢复过来
         IF_ID_IR = IF_instruction;
+        IF_ID_PC = IF_PC;
     end
   end
 endmodule

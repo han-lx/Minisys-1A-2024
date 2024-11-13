@@ -32,6 +32,7 @@ module MEMtoWB(
   input EX_MEM_Mthi,
   input EX_MEM_Mtlo,
   input [31:0] EX_MEM_opcplus4,
+  input [31:0] EX_MEM_PC,
   input [31:0] EX_MEM_ALU_result,
   input [31:0] EX_MEM_rt_data,
   input [31:0] EX_MEM_rd_data,
@@ -74,6 +75,7 @@ module MEMtoWB(
   output reg MEM_WB_Eret,
   output reg MEM_WB_Rsvd,
   output reg [31:0] MEM_WB_opcplus4,
+  output reg [31:0] MEM_WB_PC,
   output reg [31:0] MEM_WB_ALU_result,
   output reg [31:0] MEM_WB_rt_data,
   output reg [31:0] MEM_WB_rd_data,
@@ -105,6 +107,7 @@ module MEMtoWB(
       MEM_WB_Eret = 1'b0;
       MEM_WB_Rsvd = 1'b0;
       MEM_WB_opcplus4 = 32'd0;
+      MEM_WB_PC = 32'd0;
       MEM_WB_ALU_result = 32'd0;
       MEM_WB_MemorIOData = 32'd0;
       MEM_WB_rt_data = 32'd0;
@@ -131,6 +134,7 @@ module MEMtoWB(
       MEM_WB_Eret = EX_MEM_Eret;
       MEM_WB_Rsvd = EX_MEM_Rsvd;
       MEM_WB_opcplus4 = EX_MEM_opcplus4;
+      MEM_WB_PC = EX_MEM_PC;
       MEM_WB_ALU_result = EX_MEM_ALU_result;
       MEM_WB_MemorIOData = MEM_MemorIOData;
       MEM_WB_rt_data = EX_MEM_rt_data;

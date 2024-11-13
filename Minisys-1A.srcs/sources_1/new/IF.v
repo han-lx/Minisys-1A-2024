@@ -23,7 +23,7 @@
 module ifetch32(
    input reset,//复位信号 高电平有效
    input clock,//时钟信号
-   input Wpc,//控制模块传入的写PC信号，用于选择写哪个PC
+   input [1:0] Wpc,//控制模块传入的写PC信号，用于选择写哪个PC
    input EX_stall,//阻塞信号
    input WPC,//写PC寄存器
    //下条PC地址的计算
@@ -40,7 +40,7 @@ module ifetch32(
    //中断异常处理
    input [31:0] Interrupt_pc,//中断处理程序的位置
    input recover,//为1时表示从中断恢复
-   input Wcp0,//为1时写CP0 
+   input cp0_wen,//中断异常
    output reg IF_recover//中断返回,寄存器，记录状态
     );
     
@@ -55,7 +55,7 @@ module ifetch32(
     
     //开始计算next_PC的值，立刻计算(右移2位后的结果）
     always @* begin
-      if (Wcp0) next_PC = Interrupt_pc >> 2;//如果写CP0使能，那么则进入中断处理程序，下条指令为中断处理程序入口
+      if (cp0_wen) next_PC = Interrupt_pc >> 2;//如果写CP0使能，那么则进入中断处理程序，下条指令为中断处理程序入口
       else if (Wpc == 2'b01) next_PC = {2'b00 , pc_plus_4[31:2]} + {{16{Instruction[15]}} , Instruction[15:0]};//跳转成立
       else if (Wpc == 2'b10) next_PC = Jpc >> 2 ;//JMP和JAL指令
       else if (Wpc == 2'b11) next_PC = read_data_1 >> 2;//JR和JALR指令
