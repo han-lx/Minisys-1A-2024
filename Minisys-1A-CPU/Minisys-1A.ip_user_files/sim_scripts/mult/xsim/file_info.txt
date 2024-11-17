@@ -1,0 +1,1 @@
+mult.vhd,vhdl,xil_defaultlib,../../../../Minisys-1A.srcs/sources_1/ip/mult/sim/mult.vhd,
