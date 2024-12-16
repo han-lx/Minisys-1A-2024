@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="multu_synth_1" LaunchPart="xc7a100tfgg484-1" LaunchTime="1731404168">
   <File Type="PA-TCL" Name="multu.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="multu_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="multu_reports.tcl"/>
   <File Type="RDS-RDS" Name="multu.vds"/>
   <File Type="RDS-UTIL" Name="multu_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="multu_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="multu.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="multu_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="multu_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/multu">
     <File Path="$PSRCDIR/sources_1/ip/multu/multu.xci">
       <FileInfo>
@@ -36,9 +33,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
