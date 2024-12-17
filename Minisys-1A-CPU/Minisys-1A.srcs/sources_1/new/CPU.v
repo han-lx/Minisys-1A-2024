@@ -165,4 +165,45 @@ module CPU(
   wire CP0_mfc0;//???????
   wire [31:0] CP0_data_out, CP0_pc_out;
   wire [31:0] Wdata;
+  
+  //终于要开始连线了C
+  //取指单元
+  ifetch32 IF(
+            //输入
+            .reset          (reset),
+            .clock          (clk),
+            .EX_stall       (ID_stall),
+            .WPC            (WPC),
+            .Wpc            (Wpc),
+            .Jpc            (ID_Jpc),
+            //.read_data_1  (),//这里缺一个数据，后面看看要不要加上
+            .ID_Npc         (IF_ID_Npc),
+            .Jpadr          (IROM_instruction),
+            .Interrupt_pc   (CP0_pc_out),
+            .recover        (MEM_WB_Eret),
+            .cp0_wen        (Wcp0),
+            //输出
+            .PC             (PC),
+            .opcplus4       (opcplus4),
+            .Instruction    (Instruction),
+            .rom_read_addr  (IROM_address),
+            .IF_recover     (IF_recover)
+    );
+   //IF/ID段间寄存器
+   IFtoID IF_ID(
+            .clock          (clk),
+            .reset          (reset),
+            .flush          (IF_flush || Wcp0),
+            .Wir            (WPC),
+            .EX_stall       (ID_stall),
+            .recover        (IF_recover),
+            .IF_opcplus4    (opcplus4),
+            .IF_instruction (Instruction),
+            .IF_PC          (PC),
+            
+            .IF_ID_Npc      (IF_ID_Npc),
+            .IF_ID_IR       (IF_ID_IR),
+            .IF_ID_recover  (IF_ID_recover),
+            .IF_ID_PC       (IF_ID_PC)
+   );
 endmodule
