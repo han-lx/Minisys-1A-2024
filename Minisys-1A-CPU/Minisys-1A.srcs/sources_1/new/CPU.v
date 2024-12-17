@@ -66,6 +66,7 @@ module CPU(
   wire nBranch;//发现分支条件无法实现
   wire IF_flush;//刷洗流水线
   wire [1:0] Wpc;//分支判断
+  wire [31:0] B_rs_data;
   
   //然后是最最重要的控制模块,中间有两个可能没用的信号，先在这里注释掉了
   wire RegDst;
@@ -176,7 +177,7 @@ module CPU(
             .WPC            (WPC),
             .Wpc            (Wpc),
             .Jpc            (ID_Jpc),
-            //.read_data_1  (),//这里缺一个数据，后面看看要不要加上
+            .read_data_1    (B_rs_data),//这里缺一个数据，后面看看要不要加上
             .ID_Npc         (IF_ID_Npc),
             .Jpadr          (IROM_instruction),
             .Interrupt_pc   (CP0_pc_out),
@@ -205,5 +206,38 @@ module CPU(
             .IF_ID_IR       (IF_ID_IR),
             .IF_ID_recover  (IF_ID_recover),
             .IF_ID_PC       (IF_ID_PC)
+   );
+   //Branch处理模块
+   branchprocess branch(
+            .IF_ID_op       (IROM_instruction[31:26]),
+            .Beq            (Beq),
+            .Bne            (Bne),
+            .Bgez           (Bgez),
+            .Bgtz           (Bgtz),
+            .Blez           (Blez),
+            .Bltz           (Bltz),
+            .Bgezal         (Bgezal),
+            .Bltzal         (Bltzal),
+            .Jrn            (Jrn),
+            .Jalr           (Jalr),
+            .Jmp            (Jmp),
+            .Jal            (Jal),
+            .CTL_Alusrc     (Alusrc),
+            .IF_WPC         (WPC),
+            .FWD_AluCsrc    (AluCsrc),
+            .FWD_AluDsrc    (AluCsrc),
+            .MemorIORead    (EX_MEM_MemRead || MEM_IORead),
+            .ID_read_data_1 (read_data_1),
+            .ID_read_data_2 (read_data_2),
+            .ID_sign_extend (sign_extend),
+            .EX_ALU_result  (EX_ALU_result),
+            .MEM_ALU_result (EX_MEM_ALU_result),
+            .MemorIOData    (read_data),
+            .Wdata          (ID_write_data),
+            
+            .nBranch        (nBranch),
+            .IF_flush       (IF_flush),
+            .Wpc            (Wpc),
+            .B_rs_data      (B_rs_data)
    );
 endmodule

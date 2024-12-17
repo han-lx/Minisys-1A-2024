@@ -52,11 +52,11 @@ module branchprocess(
   
   output nBranch,
   output IF_flush,
-  output [1:0] Wpc
+  output [1:0] Wpc,
+  output [31:0] rs_data
 );
   //传入值
   wire [31:0] rt_data;
-  wire [31:0] rs_data;
   assign rs_data = (FWD_AluCsrc == 2'b00) ? ID_read_data_1 : (FWD_AluCsrc == 2'b01) ? EX_ALU_result : (FWD_AluCsrc == 2'b10) ? ((MemorIORead == 1'b1) ? MemorIOData : MEM_ALU_result) : Wdata;
   assign rt_data = (CTL_Alusrc == 1'b1) ? ID_sign_extend: (FWD_AluDsrc == 2'b00) ? ID_read_data_2 : (FWD_AluDsrc == 2'b01) ? EX_ALU_result : (FWD_AluDsrc == 2'b10) ? ((MemorIORead == 1'b1) ? MemorIOData : MEM_ALU_result) : Wdata;
  //判0，正，负
