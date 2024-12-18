@@ -41,7 +41,7 @@ module MEMtoWB(
   input EX_MEM_Jalr,
   input EX_MEM_Bgezal,
   input EX_MEM_Bltzal,
-  //input EX_MEM_Negative,
+  input EX_MEM_Negative,
   input EX_MEM_OF,
   input EX_MEM_Div_0,
   input EX_MEM_Mfc0,
@@ -65,7 +65,7 @@ module MEMtoWB(
   output reg MEM_WB_Jalr,
   output reg MEM_WB_Bgezal,
   output reg MEM_WB_Bltzal,
-  //output reg MEM_WB_Negative,
+  output reg MEM_WB_Negative,
   output reg MEM_WB_OF,
   output reg MEM_WB_Div_0,
   output reg MEM_WB_Mfc0,
@@ -97,7 +97,7 @@ module MEMtoWB(
       MEM_WB_Jalr = 1'b0;
       MEM_WB_Bgezal = 1'b0;
       MEM_WB_Bltzal = 1'b0;
-      //MEM_WB_Negative = 1'b0;
+      MEM_WB_Negative = 1'b0;
       MEM_WB_OF = 1'b0;
       MEM_WB_Div_0 = 1'b0;
       MEM_WB_Mfc0 = 1'b0;
@@ -124,7 +124,7 @@ module MEMtoWB(
       MEM_WB_Jalr = EX_MEM_Jalr;
       MEM_WB_Bgezal = EX_MEM_Bgezal;
       MEM_WB_Bltzal = EX_MEM_Bltzal;
-      //MEM_WB_Negative = 1'b0;
+      MEM_WB_Negative = 1'b0;
       MEM_WB_OF = EX_MEM_OF;
       MEM_WB_Div_0 = EX_MEM_Div_0;
       MEM_WB_Mfc0 = EX_MEM_Mfc0;

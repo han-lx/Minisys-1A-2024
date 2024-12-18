@@ -31,9 +31,9 @@ module idecode32(
   input Jal,
   input Jalr,
   input Bgezal,
-  input EBgezal,
+  //input EBgezal,
   input Bltzal,
-  input EBltzal,
+  //input EBltzal,
   input Negative,
   input RegWrite,//Ð´¼Ä´æÆ÷ÐÅºÅ
   

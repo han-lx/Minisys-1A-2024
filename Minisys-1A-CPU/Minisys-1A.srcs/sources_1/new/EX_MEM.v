@@ -69,10 +69,12 @@ module EXtoMEM(
   input EX_Overflow,
   input [31:0] EX_ALU_result,
   input [4:0] EX_Waddr,
-  
+  input EX_Positive,
+  input EX_Negative,
+
   output reg EX_MEM_Zero,
-  //output reg EX_MEM_Positive,
-  //output reg EX_MEM_Negative,
+  output reg EX_MEM_Positive,
+  output reg EX_MEM_Negative,
   output reg EX_MEM_recover,
   output reg [31:0] EX_MEM_rd_data,
   output reg EX_MEM_Jrn,
@@ -119,8 +121,8 @@ module EXtoMEM(
     EX_MEM_rd_data = EX_rd_data;
     if (reset || flush) begin
       EX_MEM_Zero = 1'd0;
-      //EX_MEM_Positive = 1'd0;
-      //EX_MEM_Negative = 1'd0;
+      EX_MEM_Positive = 1'd0;
+      EX_MEM_Negative = 1'd0;
       EX_MEM_Jrn = 1'd0;
       EX_MEM_Jalr = 1'd0;
       EX_MEM_Jmp = 1'd0;
@@ -161,8 +163,8 @@ module EXtoMEM(
     end
     else if(EX_stall !=1'b1) begin
       EX_MEM_Zero = EX_Zero;
-      //EX_MEM_Positive = EX_Positive;
-      //EX_MEM_Negative = EX_Negative;
+      EX_MEM_Positive = EX_Positive;
+      EX_MEM_Negative = EX_Negative;
       EX_MEM_Jrn = ID_EX_Jrn;
       EX_MEM_Jalr = ID_EX_Jalr;
       EX_MEM_Jmp = ID_EX_Jmp;

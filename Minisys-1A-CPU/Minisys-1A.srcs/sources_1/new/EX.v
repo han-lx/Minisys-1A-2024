@@ -59,8 +59,8 @@ module executs32(
   output [31:0] rd_data,
   output reg EX_stall,//当进行乘除法运算时，乘除法的执行阶段占用多个时钟周期，此时流水线所有阶段都需要阻塞
   output Zero,//运算结果为0，传入控制单元
-  //output Positive,//rs的值为正
-  //output Negative,//rs的值为负，这一部分是否可以直接提前到译码阶段？
+  output Positive,//rs的值为正
+  output Negative,//rs的值为负，这一部分是否可以直接提前到译码阶段？
   output Overflow,//加减法结果溢出
   output reg Div_0,//除0操作，抛出异常
   output [4:0] Waddr,//写的寄存器号
@@ -131,8 +131,8 @@ module executs32(
    
   //一些输出的处理
   assign Zero = (Alu_output_mux[31:0] == 32'd0) ? 1'b1 : 1'b0;//结果为0信号
-  //assign Positive = (EX_A[31] == 0 && EX_A[31:0]!=32'd0);
-  //assign Negative = EX_A[31];
+  assign Positive = (EX_A[31] == 0 && EX_A[31:0]!=32'd0);
+  assign Negative = EX_A[31];
   //溢出判断
   assign Overflow = (ALU_ctl != 3'b000 && ALU_ctl != 3'b010) ? 1'b0 ://不是有符号加减运算
          (ALU_ctl == 3'b000) ? (S_A_input[31] == S_B_input[31] && S_A_input[31] != Alu_output_mux[31])://同号相加结果符号相反

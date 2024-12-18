@@ -89,7 +89,7 @@ module CPU(
   //接下来终于到了ID模块
   wire [31:0] ID_Jpc;
   wire [31:0] read_data_1, read_data_2;
-  wire [4:0] write_address_1, write_address_2;
+  wire [4:0] write_address_1, write_address_0;
   wire [31:0] ID_write_data;
   wire [4:0] write_register_address;
   wire [31:0] sign_extend;
@@ -128,6 +128,7 @@ module CPU(
   wire [31:0] EX_rd_data;
   wire [31:0] EX_ALU_result;
   wire [31:0] EX_rt_data;
+  wire Positive,Negative;
   
   //EX/MEM模块输出
   wire EX_MEM_Zero, EX_MEM_recover;
@@ -143,6 +144,7 @@ module CPU(
   wire EX_MEM_Break, EX_MEM_Syscall, EX_MEM_Eret, EX_MEM_Rsvd;
   wire [31:0] EX_MEM_opcplus4, EX_MEM_PC, EX_MEM_ALU_result, EX_MEM_Wdata;
   wire [4:0] EX_MEM_Waddr;
+  wire EX_MEM_Positive,EX_MEM_Negative;
   
   //MemorIO模块输出，其余输出都视作整个CPU模块的输出
   wire [31:0] read_data;
@@ -159,6 +161,7 @@ module CPU(
   wire [31:0] MEM_WB_rt_data_cp0, MEM_WB_rd_data_cp0;
   wire [4:0] MEM_WB_Waddr;
   wire [31:0] MEM_WB_MemorIOData;
+  wire MEM_WB_Negative;
   wire keyboardInterrupt, digitalTubeInterrupt;//???????
   
   //WB段输出，包括CP0协处理器模块
@@ -169,7 +172,7 @@ module CPU(
   
   //终于要开始连线了C
   //取指单元
-  ifetch32 IF(
+  ifetch32 If(
             //输入
             .reset          (reset),
             .clock          (clk),
@@ -191,7 +194,7 @@ module CPU(
             .IF_recover     (IF_recover)
     );
    //IF/ID段间寄存器
-   IFtoID IF_ID(
+   IFtoID If_Id(
             .clock          (clk),
             .reset          (reset),
             .flush          (IF_flush || Wcp0),
@@ -241,7 +244,7 @@ module CPU(
             .B_rs_data      (B_rs_data)
    );
    //control模块
-   control32 Control(
+   control32 control(
             .Instruction    (IF_ID_IR),
             .Alu_resultHigh (EX_ALU_result[31:10]),
             .l_format       (ID_EX_L_format),
@@ -287,5 +290,33 @@ module CPU(
             .Syscall        (Syscall),
             .Eret           (Eret),
             .Rsvd           (Rsvd)
+   );
+   //ID模块
+   idecode32 Id(
+            .reset          (reset),
+            .clock          (clk),
+            .ID_opcplus4    (MEM_WB_opcplus4),
+            .Instruction    (IF_ID_IR),
+            .Wdata          (Wdata),
+            .Waddr          (MEM_WB_Waddr),
+            .Jal            (MEM_WB_Jal),
+            .Jalr           (MEM_WB_Jalr),
+            .Bgezal         (MEM_WB_Bgezal),
+            //.EBgezal        (),
+            .Bltzal         (MEM_WB_Bltzal),
+            //.EBltzal        (),
+            .Negative       (MEM_WB_Negative),
+            .RegWrite       (MEM_WB_RegWrite),
+            
+            .ID_Jpc         (ID_Jpc),
+            .read_data_1    (read_data_1),
+            .read_data_2    (read_data_2),
+            .write_address_1(write_address_1),
+            .write_address_0(write_address_0),
+            .write_data     (ID_write_data),
+            .write_register_address(write_register_address),
+            .sign_extend    (sign_extend),
+            .rs             (rs),
+            .rd_data        (ID_rd_data)
    );
 endmodule
