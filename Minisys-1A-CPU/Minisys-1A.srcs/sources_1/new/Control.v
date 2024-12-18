@@ -22,13 +22,13 @@
 
 module control32(
    input [31:0] Instruction,
-   //input s_format,//存数类型指令
-   //input l_format,//取数类型指令
+   input s_format,//存数类型指令
+   input l_format,//取数类型指令
    input [21:0] Alu_resultHigh,
    //input Zero,//为了完成条件跳转指令
    //input [31:0] read_data_1,//为了完成条件跳转指令的判断
-   input clock,//上升沿状态变换
-   input reset,//复位信号
+   //input clock,//上升沿状态变换
+   //input reset,//复位信号
    
    output Regdst,//目标寄存器，1为rd，0为rt
    output Alusrc,//????打个问号，后面怎么处理
@@ -38,8 +38,8 @@ module control32(
    output MemRead,//读存储器
    output IORead,//IO读
    output IOWrite,//IO写
-   output Wir,//为1写IR寄存器
-   output Waluresult,//为1写ALU_result寄存器
+   //output Wir,//为1写IR寄存器
+   //output Waluresult,//为1写ALU_result寄存器
    //无条件跳转指令
    output Jmp,//Jmp指令
    output Jal,//Jal指令
@@ -134,11 +134,11 @@ module control32(
     assign Jal = (op==6'b000011);
  
      //读写信号
-     assign MemRead = L_format&&(Alu_resultHigh!=22'b1111111111111111111111);
-     assign IORead = L_format&&(Alu_resultHigh==22'b1111111111111111111111);
-     assign MemWrite = S_format&&(Alu_resultHigh!=22'b1111111111111111111111);
-     assign IOWrite = S_format&&(Alu_resultHigh==22'b1111111111111111111111);
-     assign MemIOtoReg = L_format;
+     assign MemRead = l_format&&(Alu_resultHigh!=22'b1111111111111111111111);
+     assign IORead = l_format&&(Alu_resultHigh==22'b1111111111111111111111);
+     assign MemWrite = s_format&&(Alu_resultHigh!=22'b1111111111111111111111);
+     assign IOWrite = s_format&&(Alu_resultHigh==22'b1111111111111111111111);
+     assign MemIOtoReg = l_format;
      //其余信号
      assign Sftmd = (op==6'b000000&&func[5:3]==3'b000);
      assign Div = (op==6'b000000&&func[5:1]==5'b01101);
