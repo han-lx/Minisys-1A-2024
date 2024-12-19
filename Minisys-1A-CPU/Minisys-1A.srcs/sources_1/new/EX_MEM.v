@@ -26,8 +26,8 @@ module EXtoMEM(
   input flush,//冲刷信号
   input EX_stall,//执行模块阻塞信号
   input EX_Zero,//结果为0
-  //input EX_Positive,
-  //input EX_Negative,
+  input EX_Positive,
+  input EX_Negative,
   input ID_EX_recover,//恢复流水信号，从上一层段间寄存器传入
   input [31:0] EX_rd_data,//rd寄存器的值，从EX模块传入
   input [31:0] EX_rt_data,//rt寄存器的值，从EX模块传入
@@ -69,8 +69,8 @@ module EXtoMEM(
   input EX_Overflow,
   input [31:0] EX_ALU_result,
   input [4:0] EX_Waddr,
-  input EX_Positive,
-  input EX_Negative,
+  //input EX_Positive,
+  //input EX_Negative,
 
   output reg EX_MEM_Zero,
   output reg EX_MEM_Positive,

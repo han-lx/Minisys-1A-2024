@@ -39,6 +39,7 @@ module coprocessor0(
   input [31:0] PC,//传入EPC
   input [4:0] rd,
   input [31:0] rt_data,
+  input mem_error,
   
   output reg Wcp0,//写协处理器使能信号
   output reg [31:0] CP0_data_out,
