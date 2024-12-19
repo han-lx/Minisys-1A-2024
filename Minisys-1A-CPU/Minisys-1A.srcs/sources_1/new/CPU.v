@@ -128,6 +128,7 @@ module CPU(
   wire [31:0] EX_rd_data;
   wire [31:0] EX_ALU_result;
   wire [31:0] EX_rt_data;
+  wire [4:0] Waddr;
   wire Positive,Negative;
   
   //EX/MEM模块输出
@@ -429,5 +430,51 @@ module CPU(
             .ID_EX_Syscall  (ID_EX_Syscall),
             .ID_EX_Eret     (ID_EX_Eret),
             .ID_EX_Rsvd     (ID_EX_Rsvd)
+   );
+   //译码模块阻塞
+   stall Idstall(
+            .EX_MemRead     (EX_MEM_MemRead || ID_EX_IORead),
+            .ID_rt          (write_address_0),
+            .ID_rs          (rs),
+            .EX_rt          (Waddr),
+            .EX_Mfc0        (ID_EX_Mfc0),
+            
+            .ID_stall       (ID_stall),
+            .WPC            (WPC)
+   );
+   //转发模块
+   forward fwd(
+            //当前指令（处于ID阶段）
+            .ID_rs          (rs),
+            .ID_rt          (write_address_0),
+            .ID_Mflo        (Mflo),
+            .ID_Mfhi        (Mfhi),
+           //上一条指令（处于EX阶段）
+            .EX_rs          (ID_EX_rs),
+            .EX_rt          (ID_EX_write_address_0),
+            .EX_Mflo        (ID_EX_Mflo),
+            .EX_Mfhi        (ID_EX_Mfhi),
+            .ID_EX_RegWrite (ID_EX_RegWrite),
+            .ID_EX_Waddr    (Waddr),
+            .ID_EX_Mtlo     (ID_EX_Mtlo),
+            .ID_EX_Mthi     (ID_EX_Mthi),
+            //上上条指令（处于MEM阶段）
+            .EX_MEM_RegWrite(EX_MEM_RegWrite),
+            .EX_MEM_Waddr   (EX_MEM_Waddr),
+            .EX_MEM_Mtlo    (EX_MEM_Mtlo),
+            .EX_MEM_Mthi    (EX_MEM_Mthi),
+            //上上上条指令（处于WB阶段）
+            .EX_WB_RegWrite (MEM_WB_RegWrite),
+            .MEM_WB_Waddr   (MEM_WB_Waddr),
+            .MEM_WB_Mtlo    (MEM_WB_Mtlo),
+            .MEM_WB_Mthi    (MEM_WB_Mthi),
+            
+            //.EX_rd          (),
+            
+            .AluAsrc        (AluAsrc),
+            .AluBsrc        (AluBsrc),
+            .AluCsrc        (AluCsrc),
+            .AluDsrc        (AluDsrc),
+            .AluMsrc        (AluMsrc)
    );
 endmodule
