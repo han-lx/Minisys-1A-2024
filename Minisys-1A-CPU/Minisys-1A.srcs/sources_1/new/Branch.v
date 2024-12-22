@@ -50,6 +50,7 @@ module branchprocess(
   input [31:0] MemorIOData,
   input [31:0] Wdata,
   
+  output Branch,
   output nBranch,
   output IF_flush,
   output [1:0] Wpc,
@@ -65,7 +66,6 @@ module branchprocess(
  assign Negative = rs_data[31];
  assign Positive = (rs_data[31] == 1'b0 && rs_data != 32'd0);
  //分支指令的情况
- wire Branch;
  assign Branch = IF_ID_op == 6'b000100 || IF_ID_op == 6'b000101 || IF_ID_op == 6'b000001 || IF_ID_op == 6'b000111 || IF_ID_op == 6'b000110 ;
  //有条件跳转失败
  assign nBranch = ((Beq && !Zero) || (Bne && Zero) || (Bgez && Negative) || (Bgtz && !Positive) || (Blez && Positive) || (Bltz && !Negative) || (Bgezal && Negative) || (Bltzal && !Negative)) && IF_WPC;

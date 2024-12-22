@@ -27,9 +27,11 @@ module ifetch32(
    input EX_stall,//阻塞信号
    input WPC,//写PC寄存器
    //下条PC地址的计算
-   input [31:0] Jpc,//译码模块传入的跳转值，用于JMP指令和JAL指令的跳转
+   input [25:0] Jpc,//译码模块传入的跳转值，用于JMP指令和JAL指令的跳转
    input [31:0] read_data_1,//译码模块传入的rs寄存器的值，用于JR和JALR指令的跳转
    input [31:0] ID_Npc,//译码模块传入的PC+4的值，同样用于选择器的计算
+   input Branch,
+   input nBranch,
    
    output reg[31:0] PC,//当前指令的PC值
    output [31:0] opcplus4,//用于JAL和JALR指令的值相比PC+4已经右移2位
@@ -53,20 +55,24 @@ module ifetch32(
     assign pc_plus_4 = { PC[31:2] + 1 , 2'b00};//计算PC+4的值
     assign opcplus4 = { 2'b00 , pc_plus_4[31:2]};//PC+4的值右移2位
     
+    wire [15:0] offset = Instruction[15:0];
+    wire sign = offset[15];
+    
     //开始计算next_PC的值，立刻计算(右移2位后的结果）
     always @* begin
       if (cp0_wen) next_PC = Interrupt_pc >> 2;//如果写CP0使能，那么则进入中断处理程序，下条指令为中断处理程序入口
-      else if (Wpc == 2'b01) next_PC = {2'b00 , pc_plus_4[31:2]} + {{16{Instruction[15]}} , Instruction[15:0]};//跳转成立
-      else if (Wpc == 2'b10) next_PC = Jpc >> 2 ;//JMP和JAL指令
-      else if (Wpc == 2'b11) next_PC = read_data_1 >> 2;//JR和JALR指令
-      else next_PC = ID_Npc >> 2;//一般情况，PC+4
+      else if (nBranch) next_PC = ID_Npc;//存在分支但预测失败，那么直接刷洗流水线，这里已经右移过了
+      else if (Wpc == 2'b10) next_PC = {6'b000000 , Jpc} ;//JMP和JAL指令
+      else if (Wpc == 2'b11) next_PC = read_data_1 >> 2;//JR和JALR指令,这里应该要右移的吧
+      else if (Wpc == 2'b01) next_PC = {2'b00 ,pc_plus_4[31:2]} + { {16{sign}}, offset};//分支成功则跳转，这条一定写在nBranch下面 
+      else next_PC = {2'b00, pc_plus_4[31:2]};//一般情况，PC+4
     end
     
     //时钟下降沿写PC
     always @(negedge clock) begin
       IF_recover = recover;
       if (reset) PC = 32'h00000000;//复位时PC回到全0初始值
-      else if (WPC && EX_stall!=1'b1) PC = next_PC << 2;//这里还没有完善
+      else if (WPC && EX_stall!=1'b1) PC = next_PC << 2;
     end
     
 endmodule
