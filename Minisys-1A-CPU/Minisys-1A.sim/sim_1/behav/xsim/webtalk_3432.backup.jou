@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Sun Dec 22 15:26:06 2024
+# Process ID: 3432
+# Current directory: D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.sim/sim_1/behav/xsim/xsim.dir/cpuclk_sim_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.sim/sim_1/behav/xsim/xsim.dir/cpuclk_sim_behav/webtalk/xsim_webtalk.tcl -notrace
