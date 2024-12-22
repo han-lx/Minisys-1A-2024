@@ -3,33 +3,97 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="cpuclk_sim_behav.wdb" id="1">
+      <db_ref path="ifetch32_sim_behav.wdb" id="1">
          <top_modules>
-            <top_module name="cpuclk_sim" />
             <top_module name="glbl" />
+            <top_module name="ifetch32_sim" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="555010000fs"></ZoomStartTime>
-      <ZoomEndTime time="794010001fs"></ZoomEndTime>
-      <Cursor1Time time="1000000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1169000001fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="110"></ValueColumnWidth>
+      <NameColumnWidth column_width="152"></NameColumnWidth>
+      <ValueColumnWidth column_width="105"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="3" />
-   <wvobject fp_name="/cpuclk_sim/pclk" type="logic">
-      <obj_property name="ElementShortName">pclk</obj_property>
-      <obj_property name="ObjectShortName">pclk</obj_property>
+   <WVObjectSize size="19" />
+   <wvobject fp_name="/ifetch32_sim/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/cpuclk_sim/clock1" type="logic">
-      <obj_property name="ElementShortName">clock1</obj_property>
-      <obj_property name="ObjectShortName">clock1</obj_property>
+   <wvobject fp_name="/ifetch32_sim/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
    </wvobject>
-   <wvobject fp_name="/cpuclk_sim/clock2" type="logic">
-      <obj_property name="ElementShortName">clock2</obj_property>
-      <obj_property name="ObjectShortName">clock2</obj_property>
+   <wvobject fp_name="/ifetch32_sim/Wpc" type="array">
+      <obj_property name="ElementShortName">Wpc[1:0]</obj_property>
+      <obj_property name="ObjectShortName">Wpc[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/EX_stall" type="logic">
+      <obj_property name="ElementShortName">EX_stall</obj_property>
+      <obj_property name="ObjectShortName">EX_stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/WPC" type="logic">
+      <obj_property name="ElementShortName">WPC</obj_property>
+      <obj_property name="ObjectShortName">WPC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/Jpc" type="array">
+      <obj_property name="ElementShortName">Jpc[25:0]</obj_property>
+      <obj_property name="ObjectShortName">Jpc[25:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/read_data_1" type="array">
+      <obj_property name="ElementShortName">read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/ID_Npc" type="array">
+      <obj_property name="ElementShortName">ID_Npc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_Npc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/Jpadr" type="array">
+      <obj_property name="ElementShortName">Jpadr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Jpadr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/Interrupt_pc" type="array">
+      <obj_property name="ElementShortName">Interrupt_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Interrupt_pc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/recover" type="logic">
+      <obj_property name="ElementShortName">recover</obj_property>
+      <obj_property name="ObjectShortName">recover</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/cp0_wen" type="logic">
+      <obj_property name="ElementShortName">cp0_wen</obj_property>
+      <obj_property name="ObjectShortName">cp0_wen</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/Branch" type="logic">
+      <obj_property name="ElementShortName">Branch</obj_property>
+      <obj_property name="ObjectShortName">Branch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/nBranch" type="logic">
+      <obj_property name="ElementShortName">nBranch</obj_property>
+      <obj_property name="ObjectShortName">nBranch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/PC" type="array">
+      <obj_property name="ElementShortName">PC[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/opcplus4" type="array">
+      <obj_property name="ElementShortName">opcplus4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">opcplus4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/Instruction" type="array">
+      <obj_property name="ElementShortName">Instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/rom_read_addr" type="array">
+      <obj_property name="ElementShortName">rom_read_addr[13:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_read_addr[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ifetch32_sim/IF_recover" type="logic">
+      <obj_property name="ElementShortName">IF_recover</obj_property>
+      <obj_property name="ObjectShortName">IF_recover</obj_property>
    </wvobject>
 </wave_config>
