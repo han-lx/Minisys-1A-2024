@@ -63,6 +63,7 @@ module CPU(
   wire IF_ID_recover;
   
   //在进入译码模块之前，先看看分支处理模块
+  wire Branch;
   wire nBranch;//发现分支条件无法实现
   wire IF_flush;//刷洗流水线
   wire [1:0] Wpc;//分支判断
@@ -187,6 +188,8 @@ module CPU(
             .Interrupt_pc   (CP0_pc_out),
             .recover        (MEM_WB_Eret),
             .cp0_wen        (Wcp0),
+            .Branch         (Branch),
+            .nBranch        (nBranch),
             //输出
             .PC             (PC),
             .opcplus4       (opcplus4),
@@ -239,6 +242,7 @@ module CPU(
             .MemorIOData    (read_data),
             .Wdata          (ID_write_data),
             
+            .Branch         (Branch),
             .nBranch        (nBranch),
             .IF_flush       (IF_flush),
             .Wpc            (Wpc),
