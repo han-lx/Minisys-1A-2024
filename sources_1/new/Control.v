@@ -125,7 +125,7 @@ module control32(
     assign Bltz = (op==6'b000001&&rt==5'b00000);
     //assign EBltz = (op==6'b000001&&rt==5'b00000&&read_data_1[31]==1'b1&&read_data_1!=32'd0);
     assign Bgezal = (op==6'b000001&&rt==5'b10001);
-    assign Bltzal = (op==6'b000001&&rt==5'b00000);
+    assign Bltzal = (op==6'b000001&&rt==5'b10000);
     //assign EBgezal = (Bgezal&&read_data_1[31]==1'b0);
     //assign EBltzal = (Bltzal&&read_data_1[31]==1'b1&&read_data_1!=32'd0);
     //assign Branchs = (EBeq||EBne||EBgez||EBgtz||EBlez||EBltz||EBgezal||EBltzal);
