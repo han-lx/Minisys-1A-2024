@@ -21,7 +21,7 @@
 
 
 module branchprocess(
-  input IF_ID_op,//IF/ID段传入的Instruction的高6位
+  input[5:0] IF_ID_op,//IF/ID段传入的Instruction的高6位
   //有条件跳转
   input Beq,
   input Bne,
