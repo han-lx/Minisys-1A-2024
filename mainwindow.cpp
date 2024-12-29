@@ -216,8 +216,7 @@ void MainWindow::runCode()
         return;
     }
 
-    // 假设编译器生成的可执行文件为 test.out
-    QString executableFile = customDir + "/test.out";  // 可执行文件路径
+    QString executableFile = customDir + "/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/test_py.asm";  // 可执行文件路径
 
     // 检查可执行文件是否存在
     QFileInfo fileInfo(executableFile);
