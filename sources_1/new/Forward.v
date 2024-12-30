@@ -47,7 +47,7 @@ module forward(
   input MEM_WB_Mtlo,
   input MEM_WB_Mthi,
   //Mfc0,Mtc0涉及到了rd寄存器
-  //input [4:0] EX_rd,
+  input [4:0] EX_rd,
   
   output [1:0] AluAsrc,//选择第一操作数
   output [1:0] AluBsrc,//选择第二操作数
@@ -66,8 +66,8 @@ module forward(
   assign AluBsrc[0] = (EX_MEM_RegWrite && EX_rt == EX_MEM_Waddr);
   assign AluBsrc[1] = (MEM_WB_RegWrite && EX_rt == MEM_WB_Waddr && !(EX_MEM_RegWrite && EX_rt == EX_MEM_Waddr));
   //只有Mfc0涉及到了读rd寄存器的值，因此这里也涉及到了rd寄存器的RAW冒险，00-无冲突，直接选择当前指令中rt的值。01-与上条指令冲突，10-与上上条指令冲突
-  //assign AluMsrc[0] = (EX_MEM_RegWrite && EX_rd == EX_MEM_Waddr);
-  //assign AluMsrc[1] = (MEM_WB_RegWrite && EX_rd == MEM_WB_Waddr && !(EX_MEM_RegWrite && EX_rd == EX_MEM_Waddr));
+  assign AluMsrc[0] = (EX_MEM_RegWrite && EX_rd == EX_MEM_Waddr);
+  assign AluMsrc[1] = (MEM_WB_RegWrite && EX_rd == MEM_WB_Waddr && !(EX_MEM_RegWrite && EX_rd == EX_MEM_Waddr));
   
   //case2:控制相关，当分支指令执行时，由于PC值的跳转会导致之前预取的PC值无效，流水线要清空重来
   //分支指令Beq,Bne涉及rs于rt寄存器的计算，需要进到执行模块，其他分支语句也许不用进到执行模块？
