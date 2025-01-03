@@ -31,6 +31,7 @@ private:
     Ui::MainWindow *ui;
     QTextEdit *textEdit;  // 用于显示和编辑代码的文本框
     QTextEdit *outputTextEdit;  // 用于显示编译和运行输出的文本框
+    QString currentFilePath;  // 当前文件路径
 };
 
 #endif // MAINWINDOW_H

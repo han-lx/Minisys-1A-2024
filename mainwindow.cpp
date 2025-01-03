@@ -7,21 +7,32 @@
 #include <QProcess>
 #include <QVBoxLayout>
 #include <QTemporaryFile>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
+    // 设置窗口标题
+    setWindowTitle(tr("IDE"));
+
+    // 设置整个窗口背景颜色为深色
+    QPalette windowPalette;
+    windowPalette.setColor(QPalette::Window, QColor(30, 30, 30));  // 深色背景
+    setPalette(windowPalette);
+
     // 初始化文本编辑器
     textEdit = new QTextEdit(this);
     setCentralWidget(textEdit);
+    textEdit->setStyleSheet("background-color: #2E2E2E; color: white;");
 
     // 创建输出文本编辑器（用于显示编译、运行输出）
     outputTextEdit = new QTextEdit(this);
     outputTextEdit->setReadOnly(true);  // 输出区域不可编辑
     outputTextEdit->setMinimumHeight(100); // 设置输出区域的最小高度
     outputTextEdit->setMaximumHeight(200); // 设置输出区域的最小高度
+    outputTextEdit->setStyleSheet("background-color: #2E2E2E; color: white;");
 
     // 创建垂直布局管理器
     QVBoxLayout *layout = new QVBoxLayout;
@@ -45,21 +56,26 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 创建菜单栏
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    QMenu *buildMenu = menuBar()->addMenu(tr("&Build"));
 
     QAction *openAction = new QAction(tr("&Open"), this);
+    openAction->setShortcut(QKeySequence::Open);  // 设置快捷键 Ctrl+O
     fileMenu->addAction(openAction);
     connect(openAction, &QAction::triggered, this, &MainWindow::openFile);
 
     QAction *saveAction = new QAction(tr("&Save"), this);
+    saveAction->setShortcut(QKeySequence::Save);  // 设置快捷键 Ctrl+S
     fileMenu->addAction(saveAction);
     connect(saveAction, &QAction::triggered, this, &MainWindow::saveFile);
 
     QAction *compileAction = new QAction(tr("&Compile"), this);
-    fileMenu->addAction(compileAction);
+    compileAction->setShortcut(Qt::Key_F5);  // 设置快捷键 F5
+    buildMenu->addAction(compileAction);
     connect(compileAction, &QAction::triggered, this, &MainWindow::compileCode);
 
     QAction *runAction = new QAction(tr("&Run"), this);
-    fileMenu->addAction(runAction);
+    runAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));  // 设置快捷键 Ctrl+F5
+    buildMenu->addAction(runAction);
     connect(runAction, &QAction::triggered, this, &MainWindow::runCode);
 }
 
@@ -71,7 +87,7 @@ MainWindow::~MainWindow()
 void MainWindow::openFile()
 {
     // 弹出文件选择对话框
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt);;C++ Files (*.c; *.h)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("C++ Files (*.c)"));
 
     if (!fileName.isEmpty()) {
         QFile file(fileName);
@@ -79,6 +95,7 @@ void MainWindow::openFile()
             QTextStream in(&file);
             textEdit->setPlainText(in.readAll());
             file.close();
+            currentFilePath = fileName;  // 记录文件路径
         } else {
             QMessageBox::warning(this, tr("Error"), tr("Unable to open file"));
         }
@@ -87,17 +104,29 @@ void MainWindow::openFile()
 
 void MainWindow::saveFile()
 {
-    // 弹出保存文件对话框
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Text Files (*.txt);;C++ Files (*.c; *.h)"));
-
-    if (!fileName.isEmpty()) {
-        QFile file(fileName);
+    // 如果当前文件已经有路径，直接保存
+    if (!currentFilePath.isEmpty()) {
+        QFile file(currentFilePath);
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             QTextStream out(&file);
             out << textEdit->toPlainText();
             file.close();
         } else {
             QMessageBox::warning(this, tr("Error"), tr("Unable to save file"));
+        }
+    } else {
+        // 如果没有文件路径，弹出保存对话框
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("C++ Files (*.c)"));
+        if (!fileName.isEmpty()) {
+            QFile file(fileName);
+            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                QTextStream out(&file);
+                out << textEdit->toPlainText();
+                file.close();
+                currentFilePath = fileName;  // 记录文件路径
+            } else {
+                QMessageBox::warning(this, tr("Error"), tr("Unable to save file"));
+            }
         }
     }
 }
@@ -112,7 +141,7 @@ void MainWindow::compileCode()
     }
 
     // 设置自定义的临时目录路径
-    QString tempDir = "E:/IDE";  // 你希望存储临时文件的目录
+    QString tempDir = "E:/IDE";  // 存储临时文件的目录
     if (!QDir(tempDir).exists()) {
         // 如果目录不存在，尝试创建它
         if (!QDir().mkpath(tempDir)) {
@@ -121,7 +150,7 @@ void MainWindow::compileCode()
         }
     }
 
-    QString tempFileName = tempDir + "/test.c";  // 这里假设你编译的是C代码
+    QString tempFileName = tempDir + "/test.c";
 
     QFile tempFile(tempFileName);
     if (!tempFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -144,7 +173,7 @@ void MainWindow::compileCode()
 
     // 调用 Python 编译器脚本
     QProcess process;
-    process.setProgram("python");  // 或者 "python"，取决于你的系统
+    process.setProgram("python");
     process.setArguments(QStringList() << pythonScript << fileName);  // 添加文件路径参数
     process.start();
     process.waitForFinished();  // 等待编译完成
@@ -198,7 +227,7 @@ void MainWindow::runCode()
 
     // 调用 Python 编译器脚本进行编译
     QProcess compileProcess;
-    compileProcess.setProgram("python3");  // 或者 "python"，取决于你的系统
+    compileProcess.setProgram("python3");
     compileProcess.setArguments(QStringList() << pythonScript << tempFileName);  // 添加文件路径参数
     compileProcess.start();
     compileProcess.waitForFinished();  // 等待编译完成

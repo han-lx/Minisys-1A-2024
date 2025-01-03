@@ -15,8 +15,10 @@ protected:
 
 private:
     QRegExp keywordPattern;
+    QRegExp bracketPattern;
     QTextCharFormat keywordFormat;
     QTextCharFormat commentFormat;
+    QTextCharFormat bracketFormat;
 };
 
 #endif // CODEHIGHLIGHTER_H
