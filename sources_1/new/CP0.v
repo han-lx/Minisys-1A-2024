@@ -39,7 +39,7 @@ module coprocessor0(
   input [31:0] PC,//传入EPC
   input [4:0] rd,
   input [31:0] rt_data,
-  input mem_error,
+  //input mem_error,
   
   output reg Wcp0,//写协处理器使能信号
   output reg [31:0] CP0_data_out,
@@ -73,7 +73,7 @@ module coprocessor0(
       cp0[12][0] = 1'b1;//中断使能位IE
       cp0[12][15:10] = 6'b111111;//6种外部中断都有，初始化的值
     end
-    wen = (CAUSE_ExcCode != 5'b11111) && !recover && cp0[12][0];//此时是有中断的情况
+    wen = (CAUSE_ExcCode != 5'b11111) && (!recover) && cp0[12][0];//此时是有中断的情况
     Wcp0 = wen || Eret;//写CPO要么是中断，要么是有返回地址
     if (Mtc0 == 1'b1) begin
       cp0[rd] = rt_data;

@@ -232,7 +232,7 @@ module CPU(
             .CTL_Alusrc     (Alusrc),
             .IF_WPC         (WPC),
             .FWD_AluCsrc    (AluCsrc),
-            .FWD_AluDsrc    (AluCsrc),
+            .FWD_AluDsrc    (AluDsrc),
             .MemorIORead    (EX_MEM_MemRead || MEM_IORead),
             .ID_read_data_1 (read_data_1),
             .ID_read_data_2 (read_data_2),
@@ -473,7 +473,7 @@ module CPU(
             .MEM_WB_Mtlo    (MEM_WB_Mtlo),
             .MEM_WB_Mthi    (MEM_WB_Mthi),
             
-            //.EX_rd          (),
+            .EX_rd          (ID_EX_write_address_1),
             
             .AluAsrc        (AluAsrc),
             .AluBsrc        (AluBsrc),
@@ -484,7 +484,7 @@ module CPU(
    //来到执行模块了，快结束了
    executs32 Ex(
             .clock          (clk),
-            .EX_opcplus4    (MEM_WB_opcplus4),//?????为什么传的这里的PC+4？
+            .EX_opcplus4    (MEM_WB_opcplus4),//其实这个没用啦牢底
             .EX_A           (ID_EX_A),
             .EX_B           (ID_EX_B),
             .EX_rd_data     (ID_EX_rd_data),
@@ -718,7 +718,7 @@ module CPU(
             .PC              (MEM_WB_PC),
             .rd              (MEM_WB_rd_data_cp0[4:0]),//????不知道为啥
             .rt_data         (MEM_WB_rt_data_cp0),
-            .mem_error       (mem_error),
+            //.mem_error       (mem_error),
             
             .Wcp0            (Wcp0),
             .CP0_data_out    (CP0_data_out),

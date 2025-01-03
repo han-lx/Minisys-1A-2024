@@ -106,13 +106,13 @@ module MEM(
          ram_data_output[31:8] = {24{ram_sign & ram_data_output[7]}};//前24位采用符号扩展或者0扩展
        end
        2'b01:begin
-         if(!bit_error) begin
+         //if(!bit_error) begin
            case(ram_addr_input[1])
              1'b0:begin ram_data_output[15:0] = {ram1_data, ram0_data};end
             1'b1:begin ram_data_output[15:0] = {ram3_data, ram2_data};end
            endcase
            ram_data_output[31:16] = {16{ram_sign & ram_data_output[15]}};
-         end
+         //end
        end
        2'b11:begin
          if(!bit_error)

@@ -223,7 +223,7 @@ module executs32(
       else EX_stall = 1'b0;
     end
     else begin
-      div_stall = 6'd50;//这个值不确定
+      div_stall = 6'd37;//这个值不确定
     end
     if(Divu) begin
       divu_stall = divu_stall - 6'd1;
@@ -231,7 +231,7 @@ module executs32(
       else EX_stall = 1'b0;
     end
     else begin
-      divu_stall = 6'd50;//这个值不确定
+      divu_stall = 6'd35;//这个值不确定
     end
   end
   //之后将乘除法的结果放入HI,LO寄存器，这里还包含单纯读写寄存器的指令
