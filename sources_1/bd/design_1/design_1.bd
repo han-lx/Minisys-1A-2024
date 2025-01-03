@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x0" bd:device="xc7a100tfgg484-1" bd:synthFlowMode="Hierarchical" bd:tool_version="2017.4" bd:top="design_1" bd:version="1.00.a">
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>design_1</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:parameters>
+      <spirit:parameter>
+        <spirit:name>isTop</spirit:name>
+        <spirit:value spirit:format="bool" spirit:resolve="immediate">true</spirit:value>
+      </spirit:parameter>
+    </spirit:parameters>
+    <spirit:model>
+      <spirit:views>
+        <spirit:view>
+          <spirit:name>BlockDiagram</spirit:name>
+          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
+          <spirit:hierarchyRef spirit:library="BlockDiagram" spirit:name="design_1_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+        </spirit:view>
+      </spirit:views>
+    </spirit:model>
+  </spirit:component>
+
+  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>design_1_imp</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:componentInstances>
+      <spirit:componentInstance>
+        <spirit:instanceName>control32_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="control32" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_control32_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">control32</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>IFtoID_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="IFtoID" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_IFtoID_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">IFtoID</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>idecode32_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="idecode32" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_idecode32_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">idecode32</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>branchprocess_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="branchprocess" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_branchprocess_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">branchprocess</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>IDtoEX_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="IDtoEX" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_IDtoEX_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">IDtoEX</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlslice_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlslice" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_xlslice_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="DIN_TO">26</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="DIN_FROM">31</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="DOUT_WIDTH">6</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>forward_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="forward" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_forward_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">forward</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+    </spirit:componentInstances>
+    <spirit:adHocConnections>
+      <spirit:adHocConnection>
+        <spirit:name>IFtoID_0_IF_ID_Npc</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="IFtoID_0" spirit:portRef="IF_ID_Npc"/>
+        <spirit:internalPortReference spirit:componentRef="idecode32_0" spirit:portRef="ID_opcplus4"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>IFtoID_0_IF_ID_PC</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="IFtoID_0" spirit:portRef="IF_ID_PC"/>
+        <spirit:internalPortReference spirit:componentRef="IDtoEX_0" spirit:portRef="IF_ID_PC"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>IFtoID_0_IF_ID_IR</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="IFtoID_0" spirit:portRef="IF_ID_IR"/>
+        <spirit:internalPortReference spirit:componentRef="idecode32_0" spirit:portRef="Instruction"/>
+        <spirit:internalPortReference spirit:componentRef="xlslice_0" spirit:portRef="Din"/>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Instruction"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xlslice_0_Dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlslice_0" spirit:portRef="Dout"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="IF_ID_op"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Beq</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Beq"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Beq"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Bne</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Bne"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Bne"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Bgez</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Bgez"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Bgez"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Bgtz</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Bgtz"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Bgtz"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Blez</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Blez"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Blez"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Bltz</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Bltz"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Bltz"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Bgezal</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Bgezal"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Bgezal"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Bltzal</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Bltzal"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Bltzal"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Jrn</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Jrn"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Jrn"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Jalr</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Jalr"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Jalr"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Jmp</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Jmp"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Jmp"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Jal</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Jal"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="Jal"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>control32_0_Alusrc</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="control32_0" spirit:portRef="Alusrc"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="CTL_Alusrc"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>idecode32_0_read_data_1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="idecode32_0" spirit:portRef="read_data_1"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="ID_read_data_1"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>idecode32_0_read_data_2</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="idecode32_0" spirit:portRef="read_data_2"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="ID_read_data_2"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>idecode32_0_sign_extend</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="idecode32_0" spirit:portRef="sign_extend"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="ID_sign_extend"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>forward_0_AluCsrc</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="forward_0" spirit:portRef="AluCsrc"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="FWD_AluCsrc"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>forward_0_AluDsrc</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="forward_0" spirit:portRef="AluDsrc"/>
+        <spirit:internalPortReference spirit:componentRef="branchprocess_0" spirit:portRef="FWD_AluDsrc"/>
+      </spirit:adHocConnection>
+    </spirit:adHocConnections>
+  </spirit:design>
+
+</bd:repository>
