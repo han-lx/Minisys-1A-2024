@@ -54,6 +54,7 @@ module executs32(
   input EX_Mtlo,
   //用于转发选择的数据
   input [31:0] EX_MEM_ALU_result,//当指令与前一条指令存在RAW冒险时，可以直接将前一条指令的运算结果转发过来进行运算
+  //input EX_MEM_L_format,
   input [31:0] Wdata,//最终写入寄存器的数据，这里也许是ALU的运算结果，也可能是从IO或者MEM中读出的数据，当当前指令与上上条指令存在RAW冒险时传入多路选择器
   
   output [31:0] rd_data,
@@ -191,14 +192,18 @@ module executs32(
   //乘除法阻塞流水线
   //初始状态阻塞信号为0
   initial begin
-    EX_stall = 1'b0;
-  end
+   EX_stall = 1'b0;
+end
+
+  
+  
   //需要寄存器来记录停顿周期数，只有当完成操作才能将流水线阻塞信号复位
   //由于我们现在对乘除法需要的时钟周期数并不清楚，因此我们在这里先预设一个比较大的停顿周期数
   //reg [5:0] mult_stall;
   //reg [5:0] multu_stall;
   reg [5:0] div_stall;
   reg [5:0] divu_stall;
+
   
   always @(posedge clock) begin
  //   if(Mult) begin
@@ -217,6 +222,33 @@ module executs32(
  //   else begin
  //     multu_stall = 6'd10;//这个值不确定
  //   end
+ // 延迟寄存器，用于存储上一周期的 mem_stall 状态
+ 
+     // 检查是否为访存指令，并且需要等待上一条指令的数据
+//   if (EX_MEM_L_format == 1'b1 && AluBsrc == 2'b01) begin
+//       if (mem_stall_d1 == 1'b0) begin
+//           // 如果是第一次访问内存，设置 EX_stall 为 1，暂停流水线
+//           EX_stall = 1'b1;
+//           mem_stall_counter = 6'd1; // 设置为1周期停顿
+//       end
+//       else begin
+//           // 如果已经暂停了一个周期，继续保持暂停
+//           EX_stall = 1'b1;
+//           if (mem_stall_counter > 0)
+//               mem_stall_counter = mem_stall_counter - 6'd1;
+//           else
+//               EX_stall = 1'b0;  // 恢复流水线
+//       end
+//       // 更新 mem_stall_d1 延迟寄存器
+//       mem_stall_d1 = 1'b1;  // 激活阻塞标志
+//   end
+//   else begin
+//       // 如果当前指令不需要内存访问，恢复流水线
+//       mem_stall_d1 = 1'b0;
+//       EX_stall = 1'b0;  // 恢复流水线
+//   end
+
+ 
     if(Div) begin
       div_stall = div_stall - 6'd1;
       if (div_stall > 0) EX_stall = 1'b1;
@@ -264,6 +296,7 @@ module executs32(
   
   //最后这个进程是完成计算之后将结果写入段间寄存器的操作
   always @* begin
+  
     if (EX_Mfhi)
       EX_ALU_result = HI;
     else if (EX_Mflo)

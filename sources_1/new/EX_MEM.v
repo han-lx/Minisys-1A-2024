@@ -64,6 +64,7 @@ module EXtoMEM(
   input [1:0] ID_EX_Mem_Dwidth,
   input [31:0] ID_EX_opcplus4,
   input [31:0] ID_EX_PC,
+  input ID_EX_L_format,
   //以下信号从执行模块传入
   input EX_Div_0,
   input EX_Overflow,
@@ -113,7 +114,8 @@ module EXtoMEM(
   output reg [31:0] EX_MEM_PC, 
   output reg [31:0] EX_MEM_ALU_result,
   output reg [31:0] EX_MEM_Wdata,
-  output reg [4:0] EX_MEM_Waddr
+  output reg [4:0] EX_MEM_Waddr,
+  output reg EX_MEM_L_format
 );
 //赋值
   always @(negedge clock or posedge reset or posedge flush) begin
@@ -160,6 +162,7 @@ module EXtoMEM(
       EX_MEM_ALU_result = 32'd0;
       EX_MEM_Wdata = 32'd0;
       EX_MEM_Waddr = 5'd0;
+      EX_MEM_L_format = 1'b0;
     end
     else if(EX_stall !=1'b1) begin
       EX_MEM_Zero = EX_Zero;
@@ -201,7 +204,8 @@ module EXtoMEM(
       EX_MEM_PC = ID_EX_PC;
       EX_MEM_ALU_result = EX_ALU_result;
       EX_MEM_Wdata = EX_rt_data;
-      EX_MEM_Waddr = EX_Waddr;     
+      EX_MEM_Waddr = EX_Waddr;    
+      EX_MEM_L_format = ID_EX_L_format; 
     end
   end
 endmodule

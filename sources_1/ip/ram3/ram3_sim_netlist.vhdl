@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Mon Dec 16 23:41:16 2024
+-- Date        : Sat Jan  4 15:43:00 2025
 -- Host        : LAPTOP-R43A44GT running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               d:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/ram3/ram3_sim_netlist.vhdl
+--               D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/ram3/ram3_sim_netlist.vhdl
 -- Design      : ram3
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -216,7 +216,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity ram3_blk_mem_gen_prim_wrapper is
+entity ram3_blk_mem_gen_prim_wrapper_init is
   port (
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     clka : in STD_LOGIC;
@@ -226,10 +226,10 @@ entity ram3_blk_mem_gen_prim_wrapper is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram3_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
-end ram3_blk_mem_gen_prim_wrapper;
+  attribute ORIG_REF_NAME of ram3_blk_mem_gen_prim_wrapper_init : entity is "blk_mem_gen_prim_wrapper_init";
+end ram3_blk_mem_gen_prim_wrapper_init;
 
-architecture STRUCTURE of ram3_blk_mem_gen_prim_wrapper is
+architecture STRUCTURE of ram3_blk_mem_gen_prim_wrapper_init is
   signal \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_88\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED\ : STD_LOGIC;
@@ -469,7 +469,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \ram3_blk_mem_gen_prim_wrapper__parameterized0\ is
+entity \ram3_blk_mem_gen_prim_wrapper_init__parameterized0\ is
   port (
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     clka : in STD_LOGIC;
@@ -478,10 +478,10 @@ entity \ram3_blk_mem_gen_prim_wrapper__parameterized0\ is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \ram3_blk_mem_gen_prim_wrapper__parameterized0\ : entity is "blk_mem_gen_prim_wrapper";
-end \ram3_blk_mem_gen_prim_wrapper__parameterized0\;
+  attribute ORIG_REF_NAME of \ram3_blk_mem_gen_prim_wrapper_init__parameterized0\ : entity is "blk_mem_gen_prim_wrapper_init";
+end \ram3_blk_mem_gen_prim_wrapper_init__parameterized0\;
 
-architecture STRUCTURE of \ram3_blk_mem_gen_prim_wrapper__parameterized0\ is
+architecture STRUCTURE of \ram3_blk_mem_gen_prim_wrapper_init__parameterized0\ is
   signal \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1_n_0\ : STD_LOGIC;
   signal \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_88\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED\ : STD_LOGIC;
@@ -731,7 +731,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \ram3_blk_mem_gen_prim_wrapper__parameterized1\ is
+entity \ram3_blk_mem_gen_prim_wrapper_init__parameterized1\ is
   port (
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     clka : in STD_LOGIC;
@@ -740,10 +740,10 @@ entity \ram3_blk_mem_gen_prim_wrapper__parameterized1\ is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \ram3_blk_mem_gen_prim_wrapper__parameterized1\ : entity is "blk_mem_gen_prim_wrapper";
-end \ram3_blk_mem_gen_prim_wrapper__parameterized1\;
+  attribute ORIG_REF_NAME of \ram3_blk_mem_gen_prim_wrapper_init__parameterized1\ : entity is "blk_mem_gen_prim_wrapper_init";
+end \ram3_blk_mem_gen_prim_wrapper_init__parameterized1\;
 
-architecture STRUCTURE of \ram3_blk_mem_gen_prim_wrapper__parameterized1\ is
+architecture STRUCTURE of \ram3_blk_mem_gen_prim_wrapper_init__parameterized1\ is
   signal \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1__0_n_0\ : STD_LOGIC;
   signal \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_88\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED\ : STD_LOGIC;
@@ -993,7 +993,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \ram3_blk_mem_gen_prim_wrapper__parameterized2\ is
+entity \ram3_blk_mem_gen_prim_wrapper_init__parameterized2\ is
   port (
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     clka : in STD_LOGIC;
@@ -1003,10 +1003,10 @@ entity \ram3_blk_mem_gen_prim_wrapper__parameterized2\ is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \ram3_blk_mem_gen_prim_wrapper__parameterized2\ : entity is "blk_mem_gen_prim_wrapper";
-end \ram3_blk_mem_gen_prim_wrapper__parameterized2\;
+  attribute ORIG_REF_NAME of \ram3_blk_mem_gen_prim_wrapper_init__parameterized2\ : entity is "blk_mem_gen_prim_wrapper_init";
+end \ram3_blk_mem_gen_prim_wrapper_init__parameterized2\;
 
-architecture STRUCTURE of \ram3_blk_mem_gen_prim_wrapper__parameterized2\ is
+architecture STRUCTURE of \ram3_blk_mem_gen_prim_wrapper_init__parameterized2\ is
   signal \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_88\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED\ : STD_LOGIC;
@@ -1261,7 +1261,7 @@ end ram3_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of ram3_blk_mem_gen_prim_width is
 begin
-\prim_noinit.ram\: entity work.ram3_blk_mem_gen_prim_wrapper
+\prim_init.ram\: entity work.ram3_blk_mem_gen_prim_wrapper_init
      port map (
       addra(11 downto 0) => addra(11 downto 0),
       clka => clka,
@@ -1289,7 +1289,7 @@ end \ram3_blk_mem_gen_prim_width__parameterized0\;
 
 architecture STRUCTURE of \ram3_blk_mem_gen_prim_width__parameterized0\ is
 begin
-\prim_noinit.ram\: entity work.\ram3_blk_mem_gen_prim_wrapper__parameterized0\
+\prim_init.ram\: entity work.\ram3_blk_mem_gen_prim_wrapper_init__parameterized0\
      port map (
       addra(13 downto 0) => addra(13 downto 0),
       clka => clka,
@@ -1316,7 +1316,7 @@ end \ram3_blk_mem_gen_prim_width__parameterized1\;
 
 architecture STRUCTURE of \ram3_blk_mem_gen_prim_width__parameterized1\ is
 begin
-\prim_noinit.ram\: entity work.\ram3_blk_mem_gen_prim_wrapper__parameterized1\
+\prim_init.ram\: entity work.\ram3_blk_mem_gen_prim_wrapper_init__parameterized1\
      port map (
       addra(13 downto 0) => addra(13 downto 0),
       clka => clka,
@@ -1344,7 +1344,7 @@ end \ram3_blk_mem_gen_prim_width__parameterized2\;
 
 architecture STRUCTURE of \ram3_blk_mem_gen_prim_width__parameterized2\ is
 begin
-\prim_noinit.ram\: entity work.\ram3_blk_mem_gen_prim_wrapper__parameterized2\
+\prim_init.ram\: entity work.\ram3_blk_mem_gen_prim_wrapper_init__parameterized2\
      port map (
       addra(11 downto 0) => addra(11 downto 0),
       clka => clka,
@@ -1631,11 +1631,11 @@ entity ram3_blk_mem_gen_v8_4_1 is
   attribute C_INIT_FILE : string;
   attribute C_INIT_FILE of ram3_blk_mem_gen_v8_4_1 : entity is "ram3.mem";
   attribute C_INIT_FILE_NAME : string;
-  attribute C_INIT_FILE_NAME of ram3_blk_mem_gen_v8_4_1 : entity is "no_coe_file_loaded";
+  attribute C_INIT_FILE_NAME of ram3_blk_mem_gen_v8_4_1 : entity is "ram3.mif";
   attribute C_INTERFACE_TYPE : integer;
   attribute C_INTERFACE_TYPE of ram3_blk_mem_gen_v8_4_1 : entity is 0;
   attribute C_LOAD_INIT_FILE : integer;
-  attribute C_LOAD_INIT_FILE of ram3_blk_mem_gen_v8_4_1 : entity is 0;
+  attribute C_LOAD_INIT_FILE of ram3_blk_mem_gen_v8_4_1 : entity is 1;
   attribute C_MEM_TYPE : integer;
   attribute C_MEM_TYPE of ram3_blk_mem_gen_v8_4_1 : entity is 0;
   attribute C_MUX_PIPELINE_STAGES : integer;
@@ -1667,7 +1667,7 @@ entity ram3_blk_mem_gen_v8_4_1 is
   attribute C_USE_BYTE_WEB : integer;
   attribute C_USE_BYTE_WEB of ram3_blk_mem_gen_v8_4_1 : entity is 0;
   attribute C_USE_DEFAULT_DATA : integer;
-  attribute C_USE_DEFAULT_DATA of ram3_blk_mem_gen_v8_4_1 : entity is 0;
+  attribute C_USE_DEFAULT_DATA of ram3_blk_mem_gen_v8_4_1 : entity is 1;
   attribute C_USE_ECC : integer;
   attribute C_USE_ECC of ram3_blk_mem_gen_v8_4_1 : entity is 0;
   attribute C_USE_SOFTECC : integer;
@@ -1910,11 +1910,11 @@ architecture STRUCTURE of ram3 is
   attribute C_INIT_FILE : string;
   attribute C_INIT_FILE of U0 : label is "ram3.mem";
   attribute C_INIT_FILE_NAME : string;
-  attribute C_INIT_FILE_NAME of U0 : label is "no_coe_file_loaded";
+  attribute C_INIT_FILE_NAME of U0 : label is "ram3.mif";
   attribute C_INTERFACE_TYPE : integer;
   attribute C_INTERFACE_TYPE of U0 : label is 0;
   attribute C_LOAD_INIT_FILE : integer;
-  attribute C_LOAD_INIT_FILE of U0 : label is 0;
+  attribute C_LOAD_INIT_FILE of U0 : label is 1;
   attribute C_MEM_TYPE : integer;
   attribute C_MEM_TYPE of U0 : label is 0;
   attribute C_MUX_PIPELINE_STAGES : integer;
@@ -1946,7 +1946,7 @@ architecture STRUCTURE of ram3 is
   attribute C_USE_BYTE_WEB : integer;
   attribute C_USE_BYTE_WEB of U0 : label is 0;
   attribute C_USE_DEFAULT_DATA : integer;
-  attribute C_USE_DEFAULT_DATA of U0 : label is 0;
+  attribute C_USE_DEFAULT_DATA of U0 : label is 1;
   attribute C_USE_ECC : integer;
   attribute C_USE_ECC of U0 : label is 0;
   attribute C_USE_SOFTECC : integer;

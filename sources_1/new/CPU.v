@@ -147,6 +147,7 @@ module CPU(
   wire [31:0] EX_MEM_opcplus4, EX_MEM_PC, EX_MEM_ALU_result, EX_MEM_Wdata;
   wire [4:0] EX_MEM_Waddr;
   wire EX_MEM_Positive,EX_MEM_Negative;
+  wire EX_MEM_L_format;
   
   //MemorIO模块输出，其余输出都视作整个CPU模块的输出
   wire [31:0] read_data;
@@ -246,7 +247,7 @@ module CPU(
             .nBranch        (nBranch),
             .IF_flush       (IF_flush),
             .Wpc            (Wpc),
-            .B_rs_data      (B_rs_data)
+            .rs_data      (B_rs_data)
    );
    //control模块
    control32 control(
@@ -437,7 +438,7 @@ module CPU(
    );
    //译码模块阻塞
    stall Idstall(
-            .EX_MemRead     (EX_MEM_MemRead || ID_EX_IORead),
+            .EX_MemRead     (ID_EX_MemRead || ID_EX_IORead),
             .ID_rt          (write_address_0),
             .ID_rs          (rs),
             .EX_rt          (Waddr),
@@ -468,7 +469,7 @@ module CPU(
             .EX_MEM_Mtlo    (EX_MEM_Mtlo),
             .EX_MEM_Mthi    (EX_MEM_Mthi),
             //上上上条指令（处于WB阶段）
-            .EX_WB_RegWrite (MEM_WB_RegWrite),
+            .MEM_WB_RegWrite (MEM_WB_RegWrite),
             .MEM_WB_Waddr   (MEM_WB_Waddr),
             .MEM_WB_Mtlo    (MEM_WB_Mtlo),
             .MEM_WB_Mthi    (MEM_WB_Mthi),
@@ -512,6 +513,7 @@ module CPU(
             .EX_Mtlo        (ID_EX_Mtlo),
             .EX_MEM_ALU_result(EX_MEM_ALU_result),
             .Wdata          (ID_write_data),//??留个问号
+            //.EX_MEM_L_format(EX_MEM_L_format),
             
             .rd_data        (EX_rd_data),
             .EX_stall       (EX_stall),
@@ -572,6 +574,7 @@ module CPU(
             .EX_Overflow    (Overflow),
             .EX_ALU_result  (EX_ALU_result),
             .EX_Waddr       (Waddr),
+            .ID_EX_L_format (ID_EX_L_format),
 
             .EX_MEM_Zero    (EX_MEM_Zero),
             .EX_MEM_Positive(EX_MEM_Positive),
@@ -590,14 +593,14 @@ module CPU(
             .EX_MEM_Blez    (EX_MEM_Blez),
             .EX_MEM_Bgezal  (EX_MEM_Bgezal),
             .EX_MEM_Bltzal  (EX_MEM_Bltzal),
-            .EX_MEM_MemWrite(EX_MEM_MemWrite),
-            .EX_MEM_IOWrite (EX_MEM_IOWrite),
+            .EX_MEM_MemWrite( MEM_MemWrite),
+            .EX_MEM_IOWrite (MEM_IOWrite),
             .EX_MEM_MemRead (EX_MEM_MemRead),
             .EX_MEM_IORead  (EX_MEM_IORead),
             .EX_MEM_RegWrite(EX_MEM_RegWrite),
             .EX_MEM_MemIOtoReg(EX_MEM_MemIOtoReg),
-            .EX_MEM_Mem_sign(EX_MEM_Mem_sign),
-            .EX_MEM_Mem_Dwidth(EX_MEM_Mem_Dwidth),
+            .EX_MEM_Mem_sign(MEM_data_sign),
+            .EX_MEM_Mem_Dwidth( MEM_Mem_Dwidth),
             .EX_MEM_Mfhi    (EX_MEM_Mfhi),
             .EX_MEM_Mflo    (EX_MEM_Mflo),
             .EX_MEM_Mthi    (EX_MEM_Mthi),
@@ -614,15 +617,16 @@ module CPU(
             .EX_MEM_PC      (EX_MEM_PC),
             .EX_MEM_ALU_result(EX_MEM_ALU_result),
             .EX_MEM_Wdata   (EX_MEM_Wdata),
-            .EX_MEM_Waddr   (EX_MEM_Waddr)
+            .EX_MEM_Waddr   (EX_MEM_Waddr),
+            .EX_MEM_L_format(EX_MEM_L_format)
    );
    //又来到了选择时刻,在进入MEM阶段前，先要判断读写对象到底是MEM还是IO设备
    MemorIO memorio(
             .ALU_result     (EX_MEM_ALU_result),
             .CTL_MemRead    (EX_MEM_MemRead),
-            .CTL_MemWrite   (EX_MEM_MemWrite),
-            .CTL_IORead     (EX_MEM_IORead),
-            .CTL_IOWrite    (EX_MEM_IOWrite),
+            .CTL_MemWrite   (MEM_MemWrite),
+            .CTL_IORead     (MEM_IORead),
+            .CTL_IOWrite    (MEM_IOWrite),
             .Mem_data       (Mem_read_data),
             .IO_data        (IO_read_data),
             .write_data     (EX_MEM_Wdata),

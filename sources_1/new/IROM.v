@@ -28,9 +28,9 @@ module IROM(
 //接下来就是原件例化的过程
   instructionROM I_ROM(
         .clka       (ROM_clk_i),
-        .wea        (1'b0),
+        //.wea        (1'b0),
         .addra      (rom_read_addr),
-        .dina       (32'h00000000),
+        //.dina       (32'h00000000),
         .douta      (Jpadr)
    );
 endmodule

@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Mon Dec 16 23:40:37 2024
+// Date        : Sat Jan  4 15:43:53 2025
 // Host        : LAPTOP-R43A44GT running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               d:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/ram1/ram1_sim_netlist.v
+//               D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/ram1/ram1_sim_netlist.v
 // Design      : ram1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -94,9 +94,9 @@ module ram1
   (* C_INITA_VAL = "0" *) 
   (* C_INITB_VAL = "0" *) 
   (* C_INIT_FILE = "ram1.mem" *) 
-  (* C_INIT_FILE_NAME = "no_coe_file_loaded" *) 
+  (* C_INIT_FILE_NAME = "ram1.mif" *) 
   (* C_INTERFACE_TYPE = "0" *) 
-  (* C_LOAD_INIT_FILE = "0" *) 
+  (* C_LOAD_INIT_FILE = "1" *) 
   (* C_MEM_TYPE = "0" *) 
   (* C_MUX_PIPELINE_STAGES = "0" *) 
   (* C_PRIM_TYPE = "1" *) 
@@ -112,7 +112,7 @@ module ram1
   (* C_USE_BRAM_BLOCK = "0" *) 
   (* C_USE_BYTE_WEA = "0" *) 
   (* C_USE_BYTE_WEB = "0" *) 
-  (* C_USE_DEFAULT_DATA = "0" *) 
+  (* C_USE_DEFAULT_DATA = "1" *) 
   (* C_USE_ECC = "0" *) 
   (* C_USE_SOFTECC = "0" *) 
   (* C_USE_URAM = "0" *) 
@@ -427,7 +427,7 @@ module ram1_blk_mem_gen_prim_width
   wire [0:0]ena_array;
   wire [0:0]wea;
 
-  ram1_blk_mem_gen_prim_wrapper \prim_noinit.ram 
+  ram1_blk_mem_gen_prim_wrapper_init \prim_init.ram 
        (.addra(addra),
         .clka(clka),
         .dina(dina),
@@ -455,7 +455,7 @@ module ram1_blk_mem_gen_prim_width__parameterized0
   wire [7:0]douta_array;
   wire [0:0]wea;
 
-  ram1_blk_mem_gen_prim_wrapper__parameterized0 \prim_noinit.ram 
+  ram1_blk_mem_gen_prim_wrapper_init__parameterized0 \prim_init.ram 
        (.addra(addra),
         .clka(clka),
         .dina(dina),
@@ -482,7 +482,7 @@ module ram1_blk_mem_gen_prim_width__parameterized1
   wire [7:0]douta_array;
   wire [0:0]wea;
 
-  ram1_blk_mem_gen_prim_wrapper__parameterized1 \prim_noinit.ram 
+  ram1_blk_mem_gen_prim_wrapper_init__parameterized1 \prim_init.ram 
        (.addra(addra),
         .clka(clka),
         .dina(dina),
@@ -512,7 +512,7 @@ module ram1_blk_mem_gen_prim_width__parameterized2
   wire [0:0]ena_array;
   wire [0:0]wea;
 
-  ram1_blk_mem_gen_prim_wrapper__parameterized2 \prim_noinit.ram 
+  ram1_blk_mem_gen_prim_wrapper_init__parameterized2 \prim_init.ram 
        (.addra(addra),
         .clka(clka),
         .dina(dina),
@@ -521,8 +521,8 @@ module ram1_blk_mem_gen_prim_width__parameterized2
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module ram1_blk_mem_gen_prim_wrapper
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
+module ram1_blk_mem_gen_prim_wrapper_init
    (douta_array,
     clka,
     ena_array,
@@ -766,8 +766,8 @@ module ram1_blk_mem_gen_prim_wrapper
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module ram1_blk_mem_gen_prim_wrapper__parameterized0
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
+module ram1_blk_mem_gen_prim_wrapper_init__parameterized0
    (douta_array,
     clka,
     addra,
@@ -1015,8 +1015,8 @@ module ram1_blk_mem_gen_prim_wrapper__parameterized0
         .O(\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module ram1_blk_mem_gen_prim_wrapper__parameterized1
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
+module ram1_blk_mem_gen_prim_wrapper_init__parameterized1
    (douta_array,
     clka,
     addra,
@@ -1264,8 +1264,8 @@ module ram1_blk_mem_gen_prim_wrapper__parameterized1
         .O(\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1__0_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module ram1_blk_mem_gen_prim_wrapper__parameterized2
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
+module ram1_blk_mem_gen_prim_wrapper_init__parameterized2
    (douta_array,
     clka,
     ena_array,
@@ -1550,13 +1550,13 @@ endmodule
 (* C_HAS_REGCEA = "0" *) (* C_HAS_REGCEB = "0" *) (* C_HAS_RSTA = "0" *) 
 (* C_HAS_RSTB = "0" *) (* C_HAS_SOFTECC_INPUT_REGS_A = "0" *) (* C_HAS_SOFTECC_OUTPUT_REGS_B = "0" *) 
 (* C_INITA_VAL = "0" *) (* C_INITB_VAL = "0" *) (* C_INIT_FILE = "ram1.mem" *) 
-(* C_INIT_FILE_NAME = "no_coe_file_loaded" *) (* C_INTERFACE_TYPE = "0" *) (* C_LOAD_INIT_FILE = "0" *) 
+(* C_INIT_FILE_NAME = "ram1.mif" *) (* C_INTERFACE_TYPE = "0" *) (* C_LOAD_INIT_FILE = "1" *) 
 (* C_MEM_TYPE = "0" *) (* C_MUX_PIPELINE_STAGES = "0" *) (* C_PRIM_TYPE = "1" *) 
 (* C_READ_DEPTH_A = "16384" *) (* C_READ_DEPTH_B = "16384" *) (* C_READ_WIDTH_A = "8" *) 
 (* C_READ_WIDTH_B = "8" *) (* C_RSTRAM_A = "0" *) (* C_RSTRAM_B = "0" *) 
 (* C_RST_PRIORITY_A = "CE" *) (* C_RST_PRIORITY_B = "CE" *) (* C_SIM_COLLISION_CHECK = "ALL" *) 
 (* C_USE_BRAM_BLOCK = "0" *) (* C_USE_BYTE_WEA = "0" *) (* C_USE_BYTE_WEB = "0" *) 
-(* C_USE_DEFAULT_DATA = "0" *) (* C_USE_ECC = "0" *) (* C_USE_SOFTECC = "0" *) 
+(* C_USE_DEFAULT_DATA = "1" *) (* C_USE_ECC = "0" *) (* C_USE_SOFTECC = "0" *) 
 (* C_USE_URAM = "0" *) (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) 
 (* C_WRITE_DEPTH_A = "16384" *) (* C_WRITE_DEPTH_B = "16384" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) 
 (* C_WRITE_MODE_B = "WRITE_FIRST" *) (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "8" *) 
