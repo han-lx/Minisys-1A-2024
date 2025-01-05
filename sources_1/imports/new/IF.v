@@ -52,20 +52,26 @@ module ifetch32(
     
     
     assign Instruction = Jpadr;//从程序ROM中取出的指令
+    
     assign rom_read_addr = PC[15:2];//指令地址的低2位始终为0，因此这里省略
     assign pc_plus_4 = { PC[31:2] + 1 , 2'b00};//计算PC+4的值
     assign opcplus4 = { 2'b00 , pc_plus_4[31:2]};//PC+4的值右移2位
     
     wire [15:0] offset = IF_ID_IR[15:0];
     wire sign = offset[15];
+    wire fenzhi;
+    //assign fenzhi =  (Instruction == 6'b000100 || Instruction == 6'b000101 || Instruction == 6'b000001 || Instruction == 6'b000111 || Instruction == 6'b000110) ;
     
     //开始计算next_PC的值，立刻计算(右移2位后的结果）
     always @* begin
       if (cp0_wen)begin next_PC = Interrupt_pc >> 2;end//如果写CP0使能，那么则进入中断处理程序，下条指令为中断处理程序入口
+      //else if (fenzhi && Instruction != IF_ID_IR) next_PC = PC>>2;
       else if (nBranch == 1'b1)begin next_PC = ID_Npc ;end//存在分支但预测失败，那么直接刷洗流水线，这里已经右移过了
       else if (Wpc == 2'b10)begin next_PC = {6'b000000 , Jpc} ;end//JMP和JAL指令
-      else if (Wpc == 2'b11)begin next_PC = read_data_1 >> 2;end//JR和JALR指令,这里应该要右移的吧
-      else if (Wpc == 2'b01)begin next_PC = ID_Npc + { {16{sign}}, offset};end//分支成功则跳转，这条一定写在nBranch下面 
+      else if (Wpc == 2'b11)begin next_PC = read_data_1 ;end//JR和JALR指令,这里应该不要右移的吧
+      else if (Wpc == 2'b01)begin 
+        next_PC = ID_Npc + { {16{sign}}, offset};
+      end//分支成功则跳转，这条一定写在nBranch下面 
       else begin next_PC = {2'b00, pc_plus_4[31:2]};end//一般情况，PC+4
       
       

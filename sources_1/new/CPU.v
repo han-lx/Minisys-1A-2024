@@ -211,6 +211,8 @@ module CPU(
             .IF_opcplus4    (opcplus4),
             .IF_instruction (Instruction),
             .IF_PC          (PC),
+            .Branch         (Branch),
+            .nBranch        (nBranch),
             
             .IF_ID_Npc      (IF_ID_Npc),
             .IF_ID_IR       (IF_ID_IR),
@@ -236,7 +238,7 @@ module CPU(
             .IF_WPC         (WPC),
             .FWD_AluCsrc    (AluCsrc),
             .FWD_AluDsrc    (AluDsrc),
-            .MemorIORead    (EX_MEM_MemRead || MEM_IORead),
+            .MemorIORead    (EX_MEM_MemRead), //|| MEM_IORead),//这里先注释掉
             .ID_read_data_1 (read_data_1),
             .ID_read_data_2 (read_data_2),
             .ID_sign_extend (sign_extend),
@@ -311,7 +313,7 @@ module CPU(
             .Jalr           (MEM_WB_Jalr),
             .Bgezal         (MEM_WB_Bgezal),
             //.EBgezal        (),
-            .Bltzal         (MEM_WB_Bltzal),
+            .Bltzal         (Bltzal),
             //.EBltzal        (),
             .Negative       (MEM_WB_Negative),
             .RegWrite       (MEM_WB_RegWrite),
@@ -489,7 +491,7 @@ module CPU(
    //来到执行模块了，快结束了
    executs32 Ex(
             .clock          (clk),
-            .EX_opcplus4    (MEM_WB_opcplus4),//其实这个没用啦牢底
+            .EX_opcplus4    (ID_EX_opcplus4),//其实这个没用啦牢底
             .EX_A           (ID_EX_A),
             .EX_B           (ID_EX_B),
             .EX_rd_data     (ID_EX_rd_data),

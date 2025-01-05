@@ -129,7 +129,7 @@ module minisys_1A(
   
   //Êý¾ÝRAM
   MEM data_ram(
-    .ram_clk_input        (cpu_clk),
+    .ram_clk_input        (upg_clk),
     .ram_we_input         (MEM_MemWrite),
     .Mem_Dwidth           (MEM_Mem_Dwidth),
     .ram_sign             (MEM_data_sign),

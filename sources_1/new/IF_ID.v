@@ -27,6 +27,8 @@ module IFtoID(
   input Wir,//写IR寄存器控制信号
   input EX_stall,//为1时阻塞
   input recover,//从中断返回
+  input Branch,
+  input nBranch,
   
   //段间寄存器的设置
   //NPC寄存器
@@ -41,6 +43,14 @@ module IFtoID(
   input [31:0] IF_PC,
   output reg[31:0] IF_ID_PC
  );
+ 
+// always @*begin
+//  if(Branch && !nBranch)begin
+//         IF_ID_Npc = 32'd0;
+//         IF_ID_IR = 32'd0;
+//         IF_ID_PC = 32'd0;
+//    end
+//end
  
  //时钟下降沿或者reset上升沿（就是reset复位信号有效）时写段间寄存器
   always @(negedge clock or posedge reset) begin
@@ -60,5 +70,6 @@ module IFtoID(
         IF_ID_IR = IF_instruction;
         IF_ID_PC = IF_PC;
     end
+   
   end
 endmodule

@@ -134,11 +134,11 @@ module control32(
     assign Jal = (op==6'b000011);
  
      //∂¡–¥–≈∫≈
-     assign MemRead = l_format&&(Alu_resultHigh!=22'b1111111111111111111111);
-     assign IORead = l_format&&(Alu_resultHigh==22'b1111111111111111111111);
-     assign MemWrite = s_format&&(Alu_resultHigh!=22'b1111111111111111111111);
-     assign IOWrite = s_format&&(Alu_resultHigh==22'b1111111111111111111111);
-     assign MemIOtoReg = l_format;
+     assign MemRead = L_format&&(Alu_resultHigh!=22'b1111111111111111111111);
+     assign IORead = L_format&&(Alu_resultHigh==22'b1111111111111111111111);
+     assign MemWrite = S_format&&(Alu_resultHigh!=22'b1111111111111111111111);
+     assign IOWrite = S_format&&(Alu_resultHigh==22'b1111111111111111111111);
+     assign MemIOtoReg = L_format;
      //∆‰”‡–≈∫≈
      assign Sftmd = (op==6'b000000&&func[5:3]==3'b000);
      assign Div = (op==6'b000000&&func[5:1]==5'b01101);
