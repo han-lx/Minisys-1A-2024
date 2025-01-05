@@ -36,6 +36,7 @@ module idecode32(
   //input EBltzal,
   input Negative,
   input RegWrite,//写寄存器信号
+  input [4:0]IF_ID_shamt,
   
   output [25:0] ID_Jpc,//J指令跳转的地址
   output [31:0] read_data_1,//第一操作数，往后传入段间寄存器A
@@ -46,7 +47,8 @@ module idecode32(
   output [4:0] write_register_address,//写的寄存器号，往后传入段间寄存器RN
   output [31:0] sign_extend,//立即数符号扩展的结果，往后传入段间寄存器IMM
   output [4:0] rs,//rs寄存器号
-  output [31:0] rd_data//rd中原本存储的数据，用于解决数据冒险
+  output [31:0] rd_data,//rd中原本存储的数据，用于解决数据冒险
+  output [4:0]ID_shamt
    );
    reg[31:0] register[0:31];//定义32个32位寄存器
    wire [15:0] immediate;//立即数
@@ -60,6 +62,7 @@ module idecode32(
    assign write_address_0 = rt;
    assign immediate = Instruction[15:0];
    assign ID_Jpc = Instruction[25:0];//address,作0扩展
+   assign ID_shamt = IF_ID_shamt;
    //立即数扩展
    wire sign;
    assign sign = Instruction[15];

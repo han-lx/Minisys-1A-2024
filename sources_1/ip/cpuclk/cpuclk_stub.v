@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Sun Dec 22 15:27:33 2024
+// Date        : Sun Jan  5 15:47:43 2025
 // Host        : LAPTOP-R43A44GT running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               d:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/cpuclk/cpuclk_stub.v
+//               D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/cpuclk/cpuclk_stub.v
 // Design      : cpuclk
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tfgg484-1

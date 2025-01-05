@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Sun Dec 22 15:27:33 2024
+-- Date        : Sun Jan  5 15:47:43 2025
 -- Host        : LAPTOP-R43A44GT running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               d:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/cpuclk/cpuclk_sim_netlist.vhdl
+--               D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/cpuclk/cpuclk_sim_netlist.vhdl
 -- Design      : cpuclk
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -76,14 +76,14 @@ clkout2_buf: unisim.vcomponents.BUFG
 plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT => 23,
+      CLKFBOUT_MULT => 44,
       CLKFBOUT_PHASE => 0.000000,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE => 50,
+      CLKOUT0_DIVIDE => 44,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
-      CLKOUT1_DIVIDE => 96,
+      CLKOUT1_DIVIDE => 11,
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT2_DIVIDE => 1,
@@ -99,7 +99,7 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       CLKOUT5_DUTY_CYCLE => 0.500000,
       CLKOUT5_PHASE => 0.000000,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 2,
+      DIVCLK_DIVIDE => 5,
       IS_CLKINSEL_INVERTED => '0',
       IS_PWRDWN_INVERTED => '0',
       IS_RST_INVERTED => '0',

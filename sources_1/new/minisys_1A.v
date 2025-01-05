@@ -121,7 +121,7 @@ module minisys_1A(
   
   //÷∏¡ÓROM
   IROM instruction_rom(
-    .ROM_clk_i        (cpu_clk),
+    .ROM_clk_i        (upg_clk),
     .rom_read_addr    (IROM_address),
     
     .Jpadr            (Jpadr)

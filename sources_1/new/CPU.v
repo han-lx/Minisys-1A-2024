@@ -96,6 +96,7 @@ module CPU(
   wire [31:0] sign_extend;
   wire [4:0] rs;
   wire [31:0] ID_rd_data;
+  wire [4:0] ID_shamt;
   
   //阻塞模块，解决load-use冒险
   wire WPC;
@@ -191,6 +192,7 @@ module CPU(
             .cp0_wen        (Wcp0),
             .Branch         (Branch),
             .nBranch        (nBranch),
+            .IF_ID_IR       (IF_ID_IR),
             //输出
             .PC             (PC),
             .opcplus4       (opcplus4),
@@ -217,7 +219,7 @@ module CPU(
    );
    //Branch处理模块
    branchprocess branch(
-            .IF_ID_op       (IROM_instruction[31:26]),
+            .IF_ID_op       (IF_ID_IR[31:26]),
             .Beq            (Beq),
             .Bne            (Bne),
             .Bgez           (Bgez),
@@ -313,6 +315,7 @@ module CPU(
             //.EBltzal        (),
             .Negative       (MEM_WB_Negative),
             .RegWrite       (MEM_WB_RegWrite),
+            .IF_ID_shamt    (IF_ID_IR[10:6]),
             
             .ID_Jpc         (ID_Jpc),
             .read_data_1    (read_data_1),
@@ -323,7 +326,8 @@ module CPU(
             .write_register_address(write_register_address),
             .sign_extend    (sign_extend),
             .rs             (rs),
-            .rd_data        (ID_rd_data)
+            .rd_data        (ID_rd_data),
+            .ID_shamt       (ID_shamt)
    );
    //ID/EX模块
    IDtoEX Id_Ex(
@@ -339,7 +343,7 @@ module CPU(
             .ID_read_data_2 (read_data_2),
             .ID_func        (IF_ID_IR[5:0]),
             .ID_op          (IF_ID_IR[31:26]),
-            .ID_shamt       (IF_ID_IR[10:6]),
+            .ID_shamt       (ID_shamt),
             .ID_sign_extend (sign_extend),
             .ID_write_address_0(write_address_0),
             .ID_write_address_1(write_address_1),
