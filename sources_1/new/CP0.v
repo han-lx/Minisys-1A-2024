@@ -62,9 +62,9 @@ module coprocessor0(
                          (part_of_IM[5] === 1'b1) ? 5'b10001:
                          (Break === 1'b1) ? 5'b01001:
                          (Syscall === 1'b1) ? 5'b01000:
-                         (Rsvd === 1'b1) ? 5'b01010:
                          (Div_0 === 1'b1) ? 5'b00111:
                          (OF === 1'b1) ? 5'b01100:
+                         (Rsvd === 1'b1) ? 5'b01010:
                          5'b11111;
 
   integer i;
