@@ -4,7 +4,7 @@ from parser import parse
 from IRGenerator import IRGenerator
 from IROptimizer import IROptimizer
 from asm.ASMGenerator import ASMGenerator
-
+from ast_node import visualize_ast
 def compile_file():
     """编译MiniC源文件"""
     try:
@@ -22,6 +22,7 @@ def compile_file():
         ast = parse(source)
         if not ast:
             raise Exception("AST root is null.")
+        # visualize_ast(ast)  # 可视化语法树
         print("Parsing done.")
         
         # 生成中间代码

@@ -501,7 +501,7 @@ class ASMGenerator:
                                     
                             if reg_loc:
                                 if arg_num < 4:
-                                    self.new_asm(f"move $a{arg_num}, {reg_loc}")
+                                    self.new_asm(f"add $a{arg_num}, {reg_loc}, $zero")
                                 else:
                                     self.new_asm(f"sw {reg_loc}, {4 * arg_num}($sp)")
                             else:
@@ -543,7 +543,7 @@ class ASMGenerator:
                                     
                     if quad.res:  # 有返回值
                         reg_x = self.get_regs(quad, block_index, ir_index)[0]
-                        self.new_asm(f"move {reg_x}, $v0")
+                        self.new_asm(f"add {reg_x}, $v0, $zero")
                         self.manage_res_descriptors(reg_x, quad.res)
                         
                 elif binary_op:
@@ -578,7 +578,7 @@ class ASMGenerator:
                         elif quad.op == 'BITXOR_OP':
                             self.new_asm(f"xor {reg_x}, {reg_y}, {reg_z}")
                         elif quad.op == 'PLUS':
-                            self.new_asm(f"add {reg_x}, {reg_y}, {reg_z}")
+                            self.new_asm(f"add {reg_x}, {reg_y}, $zero")
                         elif quad.op == 'MINUS':
                             self.new_asm(f"sub {reg_x}, {reg_y}, {reg_z}")
                         elif quad.op == 'LEFT_OP':
@@ -666,7 +666,7 @@ class ASMGenerator:
                                 mem_loc = addr
                                 
                         if reg_loc:
-                            self.new_asm(f"move $v0, {reg_loc}")
+                            self.new_asm(f"add $v0, {reg_loc}, $zero")
                         else:
                             self.new_asm(f"lw $v0, {mem_loc}")
                             self.new_asm("nop")
@@ -697,7 +697,7 @@ class ASMGenerator:
                         elif quad.op == 'MINUS':
                             self.new_asm(f"sub {reg_x}, $zero, {reg_y}")
                         elif quad.op == 'PLUS':
-                            self.new_asm(f"move {reg_x}, {reg_y}")
+                            self.new_asm(f"add {reg_x}, {reg_y}, $zero")
                         elif quad.op == 'BITINV_OP':
                             self.new_asm(f"nor {reg_x}, {reg_y}, {reg_y}")
                         elif quad.op == 'DOLLAR':
@@ -773,7 +773,8 @@ class ASMGenerator:
             asm_elements_this_line = self._asm[index].strip().split(r',\s|\s')
             asm_elements_last_line = self._asm[index - 1].strip().split(r',|\s')
             
-            if (asm_elements_this_line[0] == 'move' and 
+            if (asm_elements_this_line[0] == 'add' and 
+                asm_elements_this_line[-1] == '$zero' and
                 index > 0 and 
                 not asm_elements_last_line[0] in ['nop', 'sw']):
                 
@@ -785,9 +786,9 @@ class ASMGenerator:
                     new_last_line = self._asm[index - 1].replace(dst_reg_last_line, dst_reg_this_line)
                     new_asm.pop()
                     
-                    # 'move $v0, $v0'
+                    # 'add $v0, $v0, $zero'
                     new_elements = new_last_line.strip().split(r',\s|\s')
-                    if new_elements[0] == 'move' and new_elements[1] == new_elements[2]:
+                    if new_elements[0] == 'add' and new_elements[1] == new_elements[2] and new_elements[-1] == '$zero':
                         continue
                     
                     new_asm.append(new_last_line)
