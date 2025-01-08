@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Tue Jan  7 20:54:26 2025
+// Date        : Sat Jan  4 15:44:33 2025
 // Host        : LAPTOP-R43A44GT running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/ram0/ram0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top ram0 -prefix
+//               ram0_ ram0_sim_netlist.v
 // Design      : ram0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -192,7 +192,6 @@ module ram0
         .web(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "bindec" *) 
 module ram0_bindec
    (ena_array,
     addra);
@@ -216,7 +215,6 @@ module ram0_bindec
         .O(ena_array[1]));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module ram0_blk_mem_gen_generic_cstr
    (douta,
     addra,
@@ -273,7 +271,6 @@ module ram0_blk_mem_gen_generic_cstr
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module ram0_blk_mem_gen_mux
    (douta,
     addra,
@@ -405,7 +402,6 @@ module ram0_blk_mem_gen_mux
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module ram0_blk_mem_gen_prim_width
    (douta_array,
     clka,
@@ -521,7 +517,6 @@ module ram0_blk_mem_gen_prim_width__parameterized2
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module ram0_blk_mem_gen_prim_wrapper_init
    (douta_array,
     clka,
@@ -576,7 +571,7 @@ module ram0_blk_mem_gen_prim_wrapper_init
     .INITP_0D(256'h0000000000000000000000000000000000000000000000000000000000000000),
     .INITP_0E(256'h0000000000000000000000000000000000000000000000000000000000000000),
     .INITP_0F(256'h0000000000000000000000000000000000000000000000000000000000000000),
-    .INIT_00(256'h000000000000000000000000000000000000000000000000000000000064AA55),
+    .INIT_00(256'h000000000000000000000000000000000000000000000000000000000000AA55),
     .INIT_01(256'h0000000000000000000000000000000000000000000000000000000000000000),
     .INIT_02(256'h0000000000000000000000000000000000000000000000000000000000000000),
     .INIT_03(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -1509,7 +1504,6 @@ module ram0_blk_mem_gen_prim_wrapper_init__parameterized2
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module ram0_blk_mem_gen_top
    (douta,
     addra,
@@ -1560,7 +1554,7 @@ endmodule
 (* C_USE_URAM = "0" *) (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) 
 (* C_WRITE_DEPTH_A = "16384" *) (* C_WRITE_DEPTH_B = "16384" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) 
 (* C_WRITE_MODE_B = "WRITE_FIRST" *) (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "8" *) 
-(* C_XDEVICEFAMILY = "artix7" *) (* ORIG_REF_NAME = "blk_mem_gen_v8_4_1" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* C_XDEVICEFAMILY = "artix7" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module ram0_blk_mem_gen_v8_4_1
    (clka,
     rsta,
@@ -1774,7 +1768,6 @@ module ram0_blk_mem_gen_v8_4_1
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_1_synth" *) 
 module ram0_blk_mem_gen_v8_4_1_synth
    (douta,
     addra,

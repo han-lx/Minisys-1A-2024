@@ -55,11 +55,16 @@ module coprocessor0(
   //外部中断的优先级最高，因此先考虑外部中断
  
   assign CAUSE_ExcCode = (part_of_IM[0] === 1'b1) ? 5'b00000:
-                         (part_of_IM[1] === 1'b1) ? 5'b01101:
-                         (part_of_IM[2] === 1'b1) ? 5'b01110:
-                         (part_of_IM[3] === 1'b1) ? 5'b01111:
-                         (part_of_IM[4] === 1'b1) ? 5'b10000:
-                         (part_of_IM[5] === 1'b1) ? 5'b10001:
+                         //(part_of_IM[1] === 1'b1) ? 5'b01101:
+                         //(part_of_IM[2] === 1'b1) ? 5'b01110:
+                         //(part_of_IM[3] === 1'b1) ? 5'b01111:
+                         //(part_of_IM[4] === 1'b1) ? 5'b10000:
+                         //(part_of_IM[5] === 1'b1) ? 5'b10001:
+                         (part_of_IM[1] === 1'b1) ? 5'b00000:
+                         (part_of_IM[2] === 1'b1) ? 5'b00000:
+                         (part_of_IM[3] === 1'b1) ? 5'b00000:
+                         (part_of_IM[4] === 1'b1) ? 5'b00000:
+                         (part_of_IM[5] === 1'b1) ? 5'b00000:
                          (Break === 1'b1) ? 5'b01001:
                          (Syscall === 1'b1) ? 5'b01000:
                          (Div_0 === 1'b1) ? 5'b00111:

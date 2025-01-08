@@ -41,7 +41,7 @@ module Minisys_1A_sim(
            .keyboard_output(keyboardOut),              // 键盘输出线(行线) 
            .digitalTube(digitalTube),              // 8位7段数码管控制器
            .digitalTube_en(digitalTubeEnable),  // 数码管使能信号A0-A7(低电平有效)
-           .pwm_output(pwmOut),           // PWM控制器
+           //.pwm_output(pwmOut),           // PWM控制器
             //wdt_output(wdtOut),           // 看门狗
            .buzzer_output(buzzerOut)     // 蜂鸣管
 //           // UART Programmer Pinouts
@@ -53,7 +53,7 @@ module Minisys_1A_sim(
      initial begin
          #500  prst = 1'b0;
          switch2N4 = 24'h5a078f;   
-         keyboardIn = 4'b1010;
+         keyboardIn = 4'b1011;
      end
      always #5 pclk = ~pclk;
 endmodule

@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Tue Jan  7 20:54:26 2025
+-- Date        : Sat Jan  4 15:44:33 2025
 -- Host        : LAPTOP-R43A44GT running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               D:/Minisys-1A/Minisys-1A-CPU/Minisys-1A.srcs/sources_1/ip/ram0/ram0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top ram0 -prefix
+--               ram0_ ram0_sim_netlist.vhdl
 -- Design      : ram0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,8 +19,6 @@ entity ram0_bindec is
     ena_array : out STD_LOGIC_VECTOR ( 1 downto 0 );
     addra : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_bindec : entity is "bindec";
 end ram0_bindec;
 
 architecture STRUCTURE of ram0_bindec is
@@ -55,8 +53,6 @@ entity ram0_blk_mem_gen_mux is
     clka : in STD_LOGIC;
     douta_array : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_mux : entity is "blk_mem_gen_mux";
 end ram0_blk_mem_gen_mux;
 
 architecture STRUCTURE of ram0_blk_mem_gen_mux is
@@ -225,8 +221,6 @@ entity ram0_blk_mem_gen_prim_wrapper_init is
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_prim_wrapper_init : entity is "blk_mem_gen_prim_wrapper_init";
 end ram0_blk_mem_gen_prim_wrapper_init;
 
 architecture STRUCTURE of ram0_blk_mem_gen_prim_wrapper_init is
@@ -266,7 +260,7 @@ begin
       INITP_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
       INITP_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
       INITP_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-      INIT_00 => X"000000000000000000000000000000000000000000000000000000000064AA55",
+      INIT_00 => X"000000000000000000000000000000000000000000000000000000000000AA55",
       INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
       INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
       INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -1255,8 +1249,6 @@ entity ram0_blk_mem_gen_prim_width is
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end ram0_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of ram0_blk_mem_gen_prim_width is
@@ -1366,8 +1358,6 @@ entity ram0_blk_mem_gen_generic_cstr is
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end ram0_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of ram0_blk_mem_gen_generic_cstr is
@@ -1434,8 +1424,6 @@ entity ram0_blk_mem_gen_top is
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end ram0_blk_mem_gen_top;
 
 architecture STRUCTURE of ram0_blk_mem_gen_top is
@@ -1461,8 +1449,6 @@ entity ram0_blk_mem_gen_v8_4_1_synth is
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_v8_4_1_synth : entity is "blk_mem_gen_v8_4_1_synth";
 end ram0_blk_mem_gen_v8_4_1_synth;
 
 architecture STRUCTURE of ram0_blk_mem_gen_v8_4_1_synth is
@@ -1692,8 +1678,6 @@ entity ram0_blk_mem_gen_v8_4_1 is
   attribute C_WRITE_WIDTH_B of ram0_blk_mem_gen_v8_4_1 : entity is 8;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of ram0_blk_mem_gen_v8_4_1 : entity is "artix7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of ram0_blk_mem_gen_v8_4_1 : entity is "blk_mem_gen_v8_4_1";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of ram0_blk_mem_gen_v8_4_1 : entity is "yes";
 end ram0_blk_mem_gen_v8_4_1;

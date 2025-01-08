@@ -32,7 +32,7 @@ module minisys_1A(
   output [23:0] led2N4,//LED结果输出
   output [7:0] digitalTube,//8位数码管控制器
   output [7:0] digitalTube_en,//数码管使能信号（低电平有效）
-  output pwm_output,//PWM控制器输出
+  //output pwm_output,//PWM控制器输出
   output buzzer_output//蜂鸣管输出
 );
   wire cpu_clk;//时钟供给CPU
@@ -196,14 +196,14 @@ module minisys_1A(
          .value          (digitalTube)
      );
      
-     PWM pwm(
-         .clock          (cpu_clk),
-         .reset          (rst),
-         .write_enable   (MEM_IOWrite && pwmCTL),
-         .address        (write_address[2:0]),
-         .write_data_in  (write_data[15:0]),
-         .PWM_output     (pwm_output)
-     );
+//     PWM pwm(
+//         .clock          (cpu_clk),
+//         .reset          (rst),
+//         .write_enable   (MEM_IOWrite && pwmCTL),
+//         .address        (write_address[2:0]),
+//         .write_data_in  (write_data[15:0]),
+//         .PWM_output     (pwm_output)
+//     );
      
      timer timer(
          .clock          (cpu_clk),

@@ -166,6 +166,7 @@ module CPU(
   wire [4:0] MEM_WB_Waddr;
   wire [31:0] MEM_WB_MemorIOData;
   wire MEM_WB_Negative;
+  wire MEM_WB_L_format;
   wire keyboardInterrupt, digitalTubeInterrupt;//???????
   
   //WB段输出，包括CP0协处理器模块
@@ -602,7 +603,7 @@ module CPU(
             .EX_MEM_MemWrite( MEM_MemWrite),
             .EX_MEM_IOWrite (MEM_IOWrite),
             .EX_MEM_MemRead (EX_MEM_MemRead),
-            .EX_MEM_IORead  (EX_MEM_IORead),
+            .EX_MEM_IORead  (MEM_IORead),
             .EX_MEM_RegWrite(EX_MEM_RegWrite),
             .EX_MEM_MemIOtoReg(EX_MEM_MemIOtoReg),
             .EX_MEM_Mem_sign(MEM_data_sign),
@@ -636,6 +637,8 @@ module CPU(
             .Mem_data       (Mem_read_data),
             .IO_data        (IO_read_data),
             .write_data     (EX_MEM_Wdata),
+            .Wdata          (Wdata),
+            .MEM_WB_L_format(MEM_WB_L_format),
             
             .read_data      (read_data),
             .write_data_o   (write_data),
@@ -681,6 +684,7 @@ module CPU(
             .EX_MEM_Eret    (EX_MEM_Eret),
             .EX_MEM_Rsvd    (EX_MEM_Rsvd),
             .EX_MEM_recover (EX_MEM_recover),
+            .EX_MEM_L_format(EX_MEM_L_format),
             .MEM_MemorIOData(read_data),
             
             .MEM_WB_recover (MEM_WB_recover),
@@ -709,6 +713,7 @@ module CPU(
             .MEM_WB_rt_data (MEM_WB_rt_data_cp0),
             .MEM_WB_rd_data (MEM_WB_rd_data_cp0),
             .MEM_WB_Waddr   (MEM_WB_Waddr),
+            .MEM_WB_L_format(MEM_WB_L_format),
             .MEM_WB_MemorIOData(MEM_WB_MemorIOData)
    );
    //异常处理，CP0,属于WB阶段

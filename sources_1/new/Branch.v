@@ -70,7 +70,7 @@ module branchprocess(
  //有条件跳转失败
  assign nBranch = ((Beq && !Zero) || (Bne && Zero) || (Bgez && Negative) || (Bgtz && !Positive) || (Blez && Positive) || (Bltz && !Negative) || (Bgezal && Negative) || (Bltzal && !Negative)) && IF_WPC;
  //流水线冲刷，当分支失败时，也就是说这里预测分支总会成功
- assign IF_flush = nBranch || Jalr || Jrn || Jmp || Jal;
+ assign IF_flush = nBranch || Jalr || Jrn ;
  //写PC的情况
  //Wpc的值
   assign Wpc = (Branch) ? 2'b01 :

@@ -51,6 +51,7 @@ module MEMtoWB(
   input EX_MEM_Eret,
   input EX_MEM_Rsvd,
   input EX_MEM_recover,
+  input EX_MEM_L_format,
   //从MEM模块传入
   input [31:0] MEM_MemorIOData,
   
@@ -80,6 +81,7 @@ module MEMtoWB(
   output reg [31:0] MEM_WB_rt_data,
   output reg [31:0] MEM_WB_rd_data,
   output reg [4:0] MEM_WB_Waddr,
+  output reg MEM_WB_L_format,
   output reg [31:0] MEM_WB_MemorIOData
 );
   
@@ -111,6 +113,7 @@ module MEMtoWB(
       MEM_WB_ALU_result = 32'd0;
       MEM_WB_MemorIOData = 32'd0;
       MEM_WB_rt_data = 32'd0;
+      MEM_WB_L_format = 1'b0;
       MEM_WB_Waddr = 5'd0;      
     end
     else begin
@@ -138,6 +141,7 @@ module MEMtoWB(
       MEM_WB_ALU_result = EX_MEM_ALU_result;
       MEM_WB_MemorIOData = MEM_MemorIOData;
       MEM_WB_rt_data = EX_MEM_rt_data;
+      MEM_WB_L_format = EX_MEM_L_format;
       MEM_WB_Waddr = EX_MEM_Waddr;
     end          
   end

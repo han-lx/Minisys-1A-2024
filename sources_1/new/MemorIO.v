@@ -29,6 +29,8 @@ module MemorIO(
   input [31:0] Mem_data,//从存储器中读出的数据
   input [15:0] IO_data,//从IO设备中读出的数据
   input [31:0] write_data,//将要写入存储器或者IO设备的数据
+  input [31:0] Wdata,
+  input MEM_WB_L_format,
   
   output [31:0] read_data,//从存储器或者IO设备中读出的数据
   output reg[31:0] write_data_o,//写入的数据
@@ -62,7 +64,12 @@ module MemorIO(
   //这个进程用来写
   always @(*) begin
     if(CTL_MemWrite || CTL_IOWrite) begin
-      write_data_o = write_data;
+      if(MEM_WB_L_format == 1'b1)begin
+        write_data_o = Wdata;
+      end
+      else begin
+        write_data_o = write_data;
+      end
     end
     else begin
       write_data_o = 32'hZZZZZZZZ;
