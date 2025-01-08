@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QCompleter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,6 +33,7 @@ private:
     QTextEdit *textEdit;  // 用于显示和编辑代码的文本框
     QTextEdit *outputTextEdit;  // 用于显示编译和运行输出的文本框
     QString currentFilePath;  // 当前文件路径
+    QCompleter *completer;  // 自动补全器
 };
 
 #endif // MAINWINDOW_H

@@ -12,7 +12,7 @@ CodeHighlighter::CodeHighlighter(QTextDocument *parent)
     // 设置关键字的显示格式
     keywordFormat.setForeground(Qt::red);
     commentFormat.setForeground(Qt::green);
-    bracketFormat.setForeground(Qt::yellow);
+    bracketFormat.setForeground(Qt::blue);
 }
 
 void CodeHighlighter::highlightBlock(const QString &text)

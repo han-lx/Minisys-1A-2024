@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QTemporaryFile>
 #include <QLabel>
+#include "codeeditor.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -17,22 +18,22 @@ MainWindow::MainWindow(QWidget *parent)
     // 设置窗口标题
     setWindowTitle(tr("IDE"));
 
-    // 设置整个窗口背景颜色为深色
+    // 设置整个窗口背景颜色为白色
     QPalette windowPalette;
-    windowPalette.setColor(QPalette::Window, QColor(30, 30, 30));  // 深色背景
+    windowPalette.setColor(QPalette::Window, QColor(255, 255, 255));  // 白色背景
     setPalette(windowPalette);
 
     // 初始化文本编辑器
-    textEdit = new QTextEdit(this);
+    textEdit = new CodeEditor(this);
     setCentralWidget(textEdit);
-    textEdit->setStyleSheet("background-color: #2E2E2E; color: white;");
+    textEdit->setStyleSheet("background-color: #FFFFFF; color: black;");
 
     // 创建输出文本编辑器（用于显示编译、运行输出）
     outputTextEdit = new QTextEdit(this);
     outputTextEdit->setReadOnly(true);  // 输出区域不可编辑
     outputTextEdit->setMinimumHeight(100); // 设置输出区域的最小高度
     outputTextEdit->setMaximumHeight(200); // 设置输出区域的最小高度
-    outputTextEdit->setStyleSheet("background-color: #2E2E2E; color: white;");
+    outputTextEdit->setStyleSheet("background-color: #FFFFFF; color: black;");
 
     // 创建垂直布局管理器
     QVBoxLayout *layout = new QVBoxLayout;
@@ -77,6 +78,19 @@ MainWindow::MainWindow(QWidget *parent)
     runAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));  // 设置快捷键 Ctrl+F5
     buildMenu->addAction(runAction);
     connect(runAction, &QAction::triggered, this, &MainWindow::runCode);
+
+    // 初始化自动补全器
+    QStringList keywords = {
+        "break", "continue", "if", "int", "string",
+        "return", "void", "while"
+    };
+
+    completer = new QCompleter(keywords, this);
+    completer->setCaseSensitivity(Qt::CaseInsensitive); // 不区分大小写
+    completer->setCompletionMode(QCompleter::InlineCompletion); // 内嵌补全
+
+    // 将自动补全器绑定到文本编辑器
+    dynamic_cast<CodeEditor *>(textEdit)->setCompleter(completer);
 }
 
 MainWindow::~MainWindow()
