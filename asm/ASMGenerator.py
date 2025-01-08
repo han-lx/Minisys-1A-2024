@@ -549,14 +549,14 @@ class ASMGenerator:
                 elif binary_op:
                     if quad.op == '=[]':
                         reg_y, reg_z = self.get_regs(quad, block_index, ir_index)
-                        self.new_asm(f"move $v1, {reg_y}")
+                        self.new_asm(f"add $v1, {reg_y}, $zero")
                         self.new_asm("sll $v1, $v1, 2")
                         base_addr = self._address_descriptors[quad.res].bound_mem_address
                         self.new_asm(f"sw {reg_z}, {base_addr}($v1)")
                         
                     elif quad.op == '[]':
                         reg_z, reg_x = self.get_regs(quad, block_index, ir_index)
-                        self.new_asm(f"move $v1, {reg_z}")
+                        self.new_asm(f"add $v1, {reg_z}, $zero")
                         self.new_asm("sll $v1, $v1, 2")
                         base_addr = self._address_descriptors[quad.arg1].bound_mem_address
                         self.new_asm(f"lw {reg_x}, {base_addr}($v1)")

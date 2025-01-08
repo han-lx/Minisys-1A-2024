@@ -313,7 +313,9 @@ class IRGenerator:
         self.new_quad('set_label', '', '', loop_label)
         expr = self.parse_expr(node[1])
         self.new_quad('j_false', expr, '', break_label)
+        # 解析循环体语句
         self.parse_stmt(node[2], context)
+        # 跳回循环开始
         self.new_quad('j', '', '', loop_label)
         self.new_quad('set_label', '', '', break_label)
         self.loop_stack.pop()
@@ -351,30 +353,35 @@ class IRGenerator:
             rhs = self.parse_expr(node[4])
             self.new_quad('=$', addr, rhs, '')
         
-        # 调函数(有参)
-        elif node.match('IDENTIFIER args'):
-            args = self.parse_args(node[2])
+        # 调函数（有参）
+        elif node.match('IDENTIFIER LPAREN args RPAREN'):
             func_name = node[1].literal
+            args = self.parse_args(node[3])
             assert func_name != 'main', '禁止手动或递归调用main函数'
-            
+
             self.post_checks.append({
                 'checker': lambda: any(f.name == func_name for f in self.func_pool),
                 'hint': f'未声明就调用了函数 {func_name}'
             })
-            
+
             self.post_checks.append({
                 'checker': lambda: len(args) == len(next(f for f in self.func_pool 
-                                                       if f.name == func_name).param_list),
+                                                   if f.name == func_name).param_list),
                 'hint': f'函数 {func_name} 调用参数数量不匹配'
             })
-            
-            self.new_quad('call', func_name, '&'.join(args), '')
+
+            if next(f for f in self.func_pool if f.name == func_name).ret_type == 'void':
+                self.new_quad('call', func_name, '&'.join(args), '')
+            else:
+                res = self.new_var_id()
+                self.new_quad('call', func_name, '&'.join(args), res)
+
             self.calls_in_scope.append({
                 'scopePath': self.scope_path.copy(),
                 'funcName': func_name
             })
-        
-        # 调函数(无参)
+
+        # 调函数（无参）
         elif node.match('IDENTIFIER LPAREN RPAREN'):
             func_name = node[1].literal
             assert func_name != 'main', '禁止手动或递归调用main函数'
@@ -443,43 +450,43 @@ class IRGenerator:
 
     def parse_expr(self, node: ASTNode) -> str:
         """处理expr，返回指代expr结果的IRVar的id"""
-        # 处理特殊情况
+        # 括号表达式
         if node.match('LPAREN expr RPAREN'):
-            # 括号表达式
+            # 原代码保持不变
             oprand = self.parse_expr(node[2])
             res = self.new_var_id()
             self.new_quad('=var', oprand, '', res)
             return res
         
-        if node.match('IDENTIFIER'):
-            # 访问变量
+        # 访问变量
+        elif node.match('IDENTIFIER'):
+            # 原代码保持不变
             var_ = self.find_var(node[1].literal)
             if isinstance(var_, IRVar):
                 assert var_.inited, f'在初始化前使用了变量：{var_.name}'
             return var_.id
         
-        if node.match('IDENTIFIER expr'):
-            # 访问数组元素
+        # 访问数组元素
+        elif node.match('IDENTIFIER expr'):
+            # 原代码保持不变
             index = self.parse_expr(node[2])
             name = node[1].literal
             res = self.new_var_id()
             self.new_quad('[]', self.find_var(name).id, index, res)
             return res
         
-        if node.match('IDENTIFIER args'):
-            # 调用函数（有参）
+        # 调用函数（有参）
+        elif node.match('IDENTIFIER LPAREN args RPAREN'):
             func_name = node[1].literal
             assert func_name != 'main', '禁止手动或递归调用main函数'
             # 作为表达式的函数调用应该有返回值
             self.post_checks.append({
-                'checker': lambda: next(f for f in self.func_pool 
-                                      if f.name == func_name).ret_type != 'void',
+                'checker': lambda: next(f for f in self.func_pool if f.name == func_name).ret_type != 'void',
                 'hint': f'函数 {func_name} 没有返回值，其调用不能作为表达式'
             })
-            args = self.parse_args(node[2])
+            args = self.parse_args(node[3])
             res = self.new_var_id()
-            assert len(args) == len(next(f for f in self.func_pool 
-                                       if f.name == func_name).param_list), \
+            assert len(args) == len(next(f for f in self.func_pool if f.name == func_name).param_list), \
                 f'函数 {func_name} 调用参数数量不匹配'
             self.new_quad('call', func_name, '&'.join(args), res)
             self.calls_in_scope.append({
@@ -488,14 +495,14 @@ class IRGenerator:
             })
             return res
         
-        if node.match('IDENTIFIER LPAREN RPAREN'):
-            # 调用函数（无参）
+        # 调用函数（无参）
+        elif node.match('IDENTIFIER LPAREN RPAREN'):
+            # 原代码保持不变
             func_name = node[1].literal
             assert func_name != 'main', '禁止手动或递归调用main函数'
             # 作为表达式的函数调用应该有返回值
             self.post_checks.append({
-                'checker': lambda: next(f for f in self.func_pool 
-                                      if f.name == func_name).ret_type != 'void',
+                'checker': lambda: next(f for f in self.func_pool if f.name == func_name).ret_type != 'void',
                 'hint': f'函数 {func_name} 没有返回值，其调用不能作为表达式'
             })
             res = self.new_var_id()
