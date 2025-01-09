@@ -63,10 +63,10 @@ int main() {
     //test();
 
     string data;
-    string src1 = "C:/Users/lx/Desktop/digitalTube.asm";
+    string src1 = "C:/Users/lx/Desktop/buzzer.asm";
 
     char out[50];
-    strcpy_s(out, "C:/Users/lx/Desktop/digitalTube.asm");
+    strcpy_s(out, "C:/Users/lx/Desktop/buzzer.asm");
     strtok(out, ".");
     strcat_s(out, ".coe");
     if (readFileToString(src1, data))

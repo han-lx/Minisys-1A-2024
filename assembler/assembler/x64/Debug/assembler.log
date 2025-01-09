@@ -1,3 +1,15 @@
-﻿  assembler.cpp
-C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\assembler.cpp(58,46): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+﻿  myAssembler.cpp
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(870,16): warning C4477: “sscanf_s”: 格式字符串“%s”需要类型“unsigned int”的参数，但可变参数 2 拥有了类型“unsigned __int64”
+      C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(870,16):
+      此参数用作缓冲区大小
+  
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1174,35): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1174,23): warning C4244: “初始化”: 从“std::streamoff”转换到“const int”，可能丢失数据
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1220,9): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1245,9): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1259,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1262,8): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1205,8): warning C4101: “binary”: 未引用的局部变量
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1233,8): warning C4101: “binary”: 未引用的局部变量
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\assembler\myAssembler.cpp(1282): warning C4715: “outputCode”: 不是所有的控件路径都返回值
   assembler.vcxproj -> C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\assembler\x64\Debug\assembler.exe

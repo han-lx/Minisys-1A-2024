@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\assembler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|solutionrelative:assembler\\assembler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\myAssembler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|solutionrelative:assembler\\myAssembler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\instructions.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|solutionrelative:assembler\\instructions.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\myAssembler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|solutionrelative:assembler\\myAssembler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\assembler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|solutionrelative:assembler\\assembler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\instructions.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B9C1BB6C-35DB-4E89-8090-613D10B22F86}|assembler\\assembler.vcxproj|solutionrelative:assembler\\instructions.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,59 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "instructions.txt",
               "DocumentMoniker": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\instructions.txt",
               "RelativeDocumentMoniker": "assembler\\instructions.txt",
               "ToolTip": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\instructions.txt",
               "RelativeToolTip": "assembler\\instructions.txt",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-01-08T07:02:43.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-08T07:02:43.782Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "myAssembler.cpp",
               "DocumentMoniker": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\myAssembler.cpp",
               "RelativeDocumentMoniker": "assembler\\myAssembler.cpp",
               "ToolTip": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\myAssembler.cpp",
               "RelativeToolTip": "assembler\\myAssembler.cpp",
-              "ViewState": "AgIAAF0BAAAAAAAAAAArwKMBAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAOUAAAAAAAAAAADgv0wBAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-04T10:57:56.904Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "assembler.cpp",
               "DocumentMoniker": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\assembler.cpp",
               "RelativeDocumentMoniker": "assembler\\assembler.cpp",
               "ToolTip": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\assembler.cpp",
               "RelativeToolTip": "assembler\\assembler.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAgwFEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-04T10:39:24.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-04T10:39:24.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "myAssembler.h",
               "DocumentMoniker": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\myAssembler.h",
               "RelativeDocumentMoniker": "assembler\\myAssembler.h",
               "ToolTip": "C:\\Users\\lx\\Desktop\\\u5927\u56DB\\\u8BA1\u7B97\u673A\u7CFB\u7EDF\u7EFC\u5408\u8BFE\u7A0B\u8BBE\u8BA1\\090212\\seu-minisys\\assembler\\assembler\\myAssembler.h",
               "RelativeToolTip": "assembler\\myAssembler.h",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAEsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-04T10:57:26.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-04T10:57:26.364Z"
             }
           ]
         }

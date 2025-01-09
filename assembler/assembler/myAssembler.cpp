@@ -166,6 +166,7 @@ static void addLabel(label a) {
 	if (labels.pointer < labels.maxlength) {
 		labels.content[labels.pointer].address = a.address;
 		labels.content[labels.pointer].type = a.type;
+		if (checkLabelName(a.name) == 1)
 		strcpy(labels.content[labels.pointer++].name, a.name);
 	}
 	else {//栈已满，动态扩展内存
@@ -348,6 +349,20 @@ static void data2code(char cbuffer[], code c, int count) {
 	validDataCount++;
 	return;
 }
+//outputCodeProcess:处理输出文件为coe格式
+static string outputCodeProcess(string outbody, size_t groupSize) {
+	string formattedOutput=""; // 存储格式化后的结果
+	size_t totalLength = outbody.length();
+	// 将十六进制字符串按字节切割，并转换为整数
+	// 循环遍历输入字符串，按 groupSize 切割
+	for (size_t i = 0; i < totalLength; i += groupSize) {
+		formattedOutput += outbody.substr(i, groupSize) + ","; 
+		// 每行结束后添加换行符
+		formattedOutput += "\n";
+	}
+	formattedOutput[formattedOutput.size() - 2] = ';';
+	return formattedOutput;
+}
 
 //主要汇编函数 二进制转换
 static code RtypeTransfer(char* name, int rd, int rs, int rt) {
@@ -367,6 +382,7 @@ static code RtypeTransfer(char* name, int rd, int rs, int rt) {
     return r;
 }
 static code ItypeTransfer(char* name, int rt, int rs, int imm) {
+	//cout << imm<<endl;
     int index = findInstructionIndex(name);
     if (index == -1) {
         return ERROR_CODE;
@@ -521,19 +537,36 @@ static code transToBinary(char* instruction) {
 	else if (instructions[index].type == 'c') {
 		c = RtypeTransfer(inst, 0, 16, 0);
 	}
-	//不确定对不对
-	else if (instructions[index].type == 'I' || instructions[index].type == 'l') {
+	else if (instructions[index].type == 'I') {
 		int rs, rt, imm = 0;
-		char temp[11] = { 0 };
+		char temp[50] = { 0 };
 		char* p = instruction + strlen(instruction) - 1;
 		while (*p != ',' && p > instruction) p--;
 		if (p == instruction) {//无逗号
-			strcpy_s(errorMessage, "transToBinary:type == 'I'or 'l' syntax error");
+			strcpy_s(errorMessage, "transToBinary:type == 'I' syntax error");
+			return ERROR_CODE;
+		}
+		p++;
+		if (sscanf(instruction, "$%d,$%d,%s", &rt, &rs, temp) != 3) {
+			strcpy_s(errorMessage, "transToBinary:type == 'I' syntax error");
+			return ERROR_CODE;
+		}
+		imm = DecHex2Int(temp);
+		c = ItypeTransfer(inst, rt, rs, imm);
+	}
+	//不确定对不对
+	else if (instructions[index].type == 'l') {
+		int rs, rt, imm = 0;
+		char temp[50] = { 0 };
+		char* p = instruction + strlen(instruction) - 1;
+		while (*p != ',' && p > instruction) p--;
+		if (p == instruction) {//无逗号
+			strcpy_s(errorMessage, "transToBinary:type ==  'l' syntax error");
 			return ERROR_CODE;
 		}
 		p++;
 		//type == 'l'  如bne $t2,$zero,done
-		if (isalpha(*p)) {
+		if (isalpha(*p) || (*p == '_')) {
 			Elf32_Rel rel;
 			rel.r_offset = (bin.text.length) * 32 + 16;
 			rel.r_info = searchLable(p)->name;
@@ -546,25 +579,22 @@ static code transToBinary(char* instruction) {
 			}
 		}
 		if (sscanf(instruction, "$%d,$%d,%s", &rt, &rs, temp) != 3) {
-			strcpy_s(errorMessage, "transToBinary:type == 'I'or 'l' syntax error");
+			strcpy_s(errorMessage, "transToBinary:type ==  'l' syntax error");
 			return ERROR_CODE;
 		}
-		imm = DecHex2Int(temp);
-		if (instructions[index].type == 'I') {
-			//imm = DecHex2Int(temp);
-			c = ItypeTransfer(inst, rt, rs, imm);
-		}
-		else {
-			imm = imm;
-			c = ItypeTransfer(inst, rs, rt, imm);
-		}
+		imm = DecHex2Int(p);
+		c = ItypeTransfer(inst, rs, rt, imm);
+	
 	}
+	//todo:暂时默认立即数为十进制数
 	else if (instructions[index].type == 'j') {
-		int rs = 0, rt, imm;
-		if (sscanf(instruction, "$%d,%x", &rt, &imm) != 2) {
+		int rs = 0, rt,imm;
+		cout << instruction<<endl;
+		if (sscanf(instruction, "$%d,%d", &rt, &imm) != 2) {
 			strcpy_s(errorMessage, "transToBinary:type == 'j' syntax error");
 			return ERROR_CODE;
 		}
+		//cout << imm << endl;
 		c = ItypeTransfer(inst, rt, rs, imm);
 	}
 	else if (instructions[index].type == 'k') {
@@ -639,7 +669,8 @@ static code transToBinary(char* instruction) {
 	}
 	else if (instructions[index].type == 'J') {
 		int addr;
-		if (isalpha(instruction[0])) {
+		//如果指令参数（instruction）的第一个字符是字母（isalpha 检查）或_，则它被视为 标签名 而不是直接地址。
+		if (isalpha(instruction[0])|| (instruction[0]=='_')) {
 			Elf32_Rel rel;
 			rel.r_offset = (bin.text.length) * 32 + 6;
 			label* lp = searchLable(instruction);
@@ -718,6 +749,7 @@ static code convertDataline_byte(char* line) {
 //汇编
 //firstProcessAsmCode：移除注释，解析label，处理保留字
 static char* firstProcessAsmCode(char* line, int lineno) {
+	char* t = line;
 	char* p;
 	p = line;
 	//清除注释
@@ -792,19 +824,26 @@ static char* firstProcessAsmCode(char* line, int lineno) {
 	char labelName[20] = "";
 	while ((p1 = strchr(p, ':'))) {
 		//isalnum()检查字符是否是字母或数字
-		while ((isalpha(*(p1 - 1)) || isalnum(*(p1 - 1))) && (p1 - 1 >= p)) {
+		while ((isalpha(*(p1 - 1)) || isalnum(*(p1 - 1))||(*(p1 - 1) == '_')) && (p1 - 1 >= p)) {
 			p1--;
 			if (p1 == p) break;
 		}
 		char* temp = strchr(p1, ':');
 		*temp = 0;//冒号位置的字符替换为字符串结束符 '\0'，截出标签
-		int n = sscanf_s(p1, "%s", labelName, _countof(labelName));
+		//cout << p1 << endl;
+		//int n = sscanf_s(p1, "%s", labelName, _countof(labelName));
+		int n = sscanf_s(p1, "%s", labelName, (unsigned int)_countof(labelName));
+		/*cout << n << endl;
+		cout << labelName << endl;
+		cout << strlen(labelName) << endl;*/
 		if (n == 0 || strlen(labelName) == 0) {
 			strcpy(errorMessage, "firstProcessAsmCode：label syntex error");
+			//cout << "error1" << endl;
 			return NULL;
 		}
 		p1 = temp + 1;
 		p = p1;
+		//cout << p << endl;
 
 		label a;
 		if (currentState == 0) {
@@ -817,6 +856,7 @@ static char* firstProcessAsmCode(char* line, int lineno) {
 		}
 		strcpy(a.name, labelName);
 		addLabel(a);
+		line = t;
 	}
 
 	//处理保留字
@@ -1168,14 +1208,22 @@ bool outputCode(string codeFile) {
 		_itoa(decimal, hex, 16);
 
 		cout << hex << endl;
-		_itoa(decimal, binary, 2);
+
+		/*_itoa(decimal, binary, 2);
 		int n = strlen(binary);
 		char str[33];
 		for (int i = 0; i < 32 - n; i++) {
 			str[i] = '0';
 		}
 		str[32 - n] = '\0';
-		strcat(str, binary);
+		strcat(str, binary);*/
+		int n = strlen(hex);
+		char str[9];
+		for (int i = 0; i < 8 - n; i++) {
+			str[i] = '0';
+		}
+		str[8 - n] = '\0';
+		strcat(str, hex);
 		outText += str;
 	}
 
@@ -1183,21 +1231,30 @@ bool outputCode(string codeFile) {
 	string outData;
 	for (int i = 0; i < bin.data.length; i++) {
 		char binary[33];
+		char hex[33];
 		code decimal = bin.data.codes[i];
-		_itoa(decimal, binary, 2);
+		_itoa(decimal, hex, 16);
+		/*_itoa(decimal, binary, 2);
 		int n = strlen(binary);
 		char str[33];
 		for (int i = 0; i < 32 - n; i++) {
 			str[i] = '0';
 		}
 		str[32 - n] = '\0';
-		strcat(str, binary);
+		strcat(str, binary);*/
+		int n = strlen(hex);
+		char str[9];
+		for (int i = 0; i < 8 - n; i++) {
+			str[i] = '0';
+		}
+		str[8 - n] = '\0';
+		strcat(str, hex);
 		outData += str;
 	}
 
 	//.head
 	string outBody;
-	outBody = outText + outData  ;
+	outBody = outText + outData;
 	string outHead;
 	int offset = outBody.length();
 	offset += 12;
@@ -1209,6 +1266,7 @@ bool outputCode(string codeFile) {
 	outHead += _offset;
 	outHead += " ";
 
+	outBody = outputCodeProcess(outBody,8);
 	ofstream codefile(codeFile.c_str(), ios::binary | ios::out);
 	if (!(codefile.is_open()))
 	{
@@ -1216,10 +1274,13 @@ bool outputCode(string codeFile) {
 		return 0;
 	}
 	if (codefile) {
-		codefile << outHead << outBody ;
+		codefile << "memory_initialization_radix=16;\n";
+		codefile << "memory_initialization_vector=\n";
+		codefile << outBody;
 	}
 
 }
+
 
 
 //test 函数
