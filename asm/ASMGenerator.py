@@ -28,9 +28,9 @@ class ASMGenerator:
         self.calc_frame_info()
         
         # 生成代码
-        self.new_asm('.data')
+        self.new_asm('.data 0X0')
         self.initialize_global_vars()
-        self.new_asm('.text')
+        self.new_asm('.text 0X0')
         self.process_text_segment()
         self.peephole_optimize()
         
@@ -718,11 +718,7 @@ class ASMGenerator:
                             current_frame_info = self._stack_frame_infos[current_func.name]
                             assert current_frame_info, f"Function name not in the pool: {quad.res}"
                             
-                            self.new_asm(f"{current_func.name}:\t\t # vars = {current_frame_info.local_data}, " + 
-                                       f"regs to save($s#) = {current_frame_info.num_gprs_2_save}, " +
-                                       f"outgoing args = {current_frame_info.outgoing_slots}, " +
-                                       f"{'do not ' if not current_frame_info.num_return_add else ''}need to save return address")
-                                       
+                            self.new_asm(f"{current_func.name}:")
                             self.new_asm(f"addiu $sp, $sp, -{4 * current_frame_info.word_size}")
                             if not current_frame_info.is_leaf:
                                 self.new_asm(f"sw $ra, {4 * (current_frame_info.word_size - 1)}($sp)")
