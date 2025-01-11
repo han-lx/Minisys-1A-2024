@@ -530,7 +530,7 @@ static code transToBinary(char* instruction) {
 		}
 		c = RtypeTransfer(inst, rd, rs, rt);
 	}
-	//软件参数？？？
+	//软件参数
 	else if (instructions[index].type == 'b') {
 		c = RtypeTransfer(inst, 0, 0, 0);
 	}
@@ -543,18 +543,18 @@ static code transToBinary(char* instruction) {
 		char* p = instruction + strlen(instruction) - 1;
 		while (*p != ',' && p > instruction) p--;
 		if (p == instruction) {//无逗号
-			strcpy_s(errorMessage, "transToBinary:type == 'I' syntax error");
+			strcpy_s(errorMessage, "transToBinary:type == 'I' syntax error1");
 			return ERROR_CODE;
 		}
 		p++;
+		cout << instruction << endl;
 		if (sscanf(instruction, "$%d,$%d,%s", &rt, &rs, temp) != 3) {
-			strcpy_s(errorMessage, "transToBinary:type == 'I' syntax error");
+			strcpy_s(errorMessage, "transToBinary:type == 'I' syntax error2");
 			return ERROR_CODE;
 		}
 		imm = DecHex2Int(temp);
 		c = ItypeTransfer(inst, rt, rs, imm);
 	}
-	//不确定对不对
 	else if (instructions[index].type == 'l') {
 		int rs, rt, imm = 0;
 		char temp[50] = { 0 };
@@ -586,7 +586,7 @@ static code transToBinary(char* instruction) {
 		c = ItypeTransfer(inst, rs, rt, imm);
 	
 	}
-	//todo:暂时默认立即数为十进制数
+	//todo:默认立即数为十进制数
 	else if (instructions[index].type == 'j') {
 		int rs = 0, rt,imm;
 		cout << instruction<<endl;

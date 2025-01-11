@@ -1,0 +1,3 @@
+﻿  linker.cpp
+C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\linker\linker\linker.cpp(113,16): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  linker.vcxproj -> C:\Users\lx\Desktop\大四\计算机系统综合课程设计\090212\seu-minisys\linker\x64\Debug\linker.exe

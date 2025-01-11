@@ -1,12 +1,6 @@
 .data 0x0000
 .text 0x0000 
 start:  # 四种内部异常和外部异常
-    ; 00000: 外部中断；
-    ; 01000: syscall 异常；
-    ; 01001: break 异常；
-    ; 01010: 保留指令（未实现的指令）异常；
-    ; 01100: 加减溢出异常
-    ; 00111; 除0异常
      addi  $t0,$zero,12         # Status 寄存器的号码是 12
      mfc0  $t1,$t0,0            # 将t0内容读出存入t1中
      andi  $t2,$t1,0xfffffffe   # 保留其他值，IE位置为0，关中断
@@ -31,33 +25,33 @@ start:  # 四种内部异常和外部异常
           
 handle_ext_int:
     addi  $t6,$zero,0x02        # 外部异常，输出02
-    ori   $t6,0xfc00($zero)
+    sw   $t6,0xfc00($zero)
     j     exit
 
      
 arith_overflow_exc:
     addi  $t6,$zero,0x0f        # 溢出后，数码管输出0f
-    ori   $t6,0xfc00($zero)
+    sw   $t6,0xfc00($zero)
     j     exit
     
 reserved_inst_exc:
     addi  $t6,$zero,0x01        # 溢出后，数码管输出01    
-    ori   $t6,0xfc00($zero)
+    sw   $t6,0xfc00($zero)
     j     exit
     
 handle_syscall_exc:
     addi  $t6,$zero,0x05        # 溢出后，数码管输出05    
-    ori   $t6,0xfc00($zero)
+    sw   $t6,0xfc00($zero)
     j     exit 
               
 handle_break_exc:
     addi  $t6,$zero,0x0b        # 溢出后，数码管输出0b    
-    ori   $t6,0xfc00($zero)
+    sw   $t6,0xfc00($zero)
     j     exit
 
 divide_zero_exc:
     addi  $t6,$zero,0x5b
-    ori   $t6,0xfc00($zero)
+    sw   $t6,0xfc00($zero)
     j     exit
 
 exit:
